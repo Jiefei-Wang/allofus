@@ -143,7 +143,7 @@ aou_observation_period <- function(cohort = NULL,
           SELECT  m.person_id AS participant, MIN( m.measurement_date) AS first_date, MAX( m.measurement_date) AS last_date
           FROM {CDR}.measurement m
           LEFT JOIN {CDR}.measurement_ext AS m_ext ON m.measurement_id = m_ext.measurement_id
-          WHERE LOWER(m_ext.src_id) LIKE 'ehr site%'--ehr data from measurement table
+          WHERE LOWER(m_ext.src_id) LIKE '%ehr%'--ehr data from measurement table
           GROUP BY 1
 
           UNION DISTINCT
@@ -155,7 +155,7 @@ aou_observation_period <- function(cohort = NULL,
           END AS last_date -- select the max of the lastest record for both date columns
           FROM {CDR}.condition_occurrence AS co
           LEFT JOIN {CDR}.condition_occurrence_ext AS co_ext ON co.condition_occurrence_id = co_ext.condition_occurrence_id
-          WHERE LOWER(co_ext.src_id) LIKE 'ehr site%' -- ehr data from condition_occurrence table
+          WHERE LOWER(co_ext.src_id) LIKE '%ehr%' -- ehr data from condition_occurrence table
           GROUP BY 1
 
           UNION DISTINCT
@@ -166,7 +166,7 @@ aou_observation_period <- function(cohort = NULL,
           END AS last_date --select the max of the lastest record for both date columns
           FROM {CDR}.device_exposure AS d
           LEFT JOIN {CDR}.device_exposure_ext AS d_ext ON d.device_exposure_id = d_ext.device_exposure_id
-          WHERE LOWER(d_ext.src_id) LIKE 'ehr site%'-- ehr data from device_exposure table
+          WHERE LOWER(d_ext.src_id) LIKE '%ehr%'-- ehr data from device_exposure table
           GROUP BY 1
 
           UNION DISTINCT
@@ -177,7 +177,7 @@ aou_observation_period <- function(cohort = NULL,
           END AS last_date
           FROM {CDR}.drug_exposure AS de
           LEFT JOIN {CDR}.drug_exposure_ext AS de_ext ON de.drug_exposure_id = de_ext.drug_exposure_id
-          WHERE LOWER(de_ext.src_id) LIKE 'ehr site%' --ehr data from drug_exposure table
+          WHERE LOWER(de_ext.src_id) LIKE '%ehr%' --ehr data from drug_exposure table
           GROUP BY 1
 
           UNION DISTINCT
@@ -186,7 +186,7 @@ aou_observation_period <- function(cohort = NULL,
           MAX(o.observation_date) AS last_date
           FROM {CDR}.observation AS o
           LEFT JOIN {CDR}.observation_ext AS o_ext ON o.observation_id = o_ext.observation_id
-          WHERE LOWER(o_ext.src_id) LIKE 'ehr site%' --ehr data from observation table
+          WHERE LOWER(o_ext.src_id) LIKE '%ehr%' --ehr data from observation table
           GROUP BY 1
 
 
@@ -196,7 +196,7 @@ aou_observation_period <- function(cohort = NULL,
           MAX(po.procedure_date) AS last_date
           FROM {CDR}.procedure_occurrence AS po
           LEFT JOIN {CDR}.procedure_occurrence_ext AS po_ext ON po.procedure_occurrence_id = po_ext.procedure_occurrence_id
-          WHERE LOWER(po_ext.src_id) LIKE 'ehr site%' -- ehr data from procedure_occurrence table
+          WHERE LOWER(po_ext.src_id) LIKE '%ehr%' -- ehr data from procedure_occurrence table
           GROUP BY 1
 
 
@@ -208,7 +208,7 @@ aou_observation_period <- function(cohort = NULL,
           END AS  last_date -- select between the end and start date by using max()
           FROM {CDR}.visit_occurrence AS v
           LEFT JOIN {CDR}.visit_occurrence_ext AS v_ext ON v.visit_occurrence_id = v_ext.visit_occurrence_id
-          WHERE LOWER(v_ext.src_id) LIKE 'ehr site%'-- ehr data from visit occurrence table
+          WHERE LOWER(v_ext.src_id) LIKE '%ehr%'-- ehr data from visit occurrence table
           GROUP BY 1
           )
 
