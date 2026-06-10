@@ -63,3 +63,24 @@ test_that("aou_create_temp_table works on a local DuckDB connection", {
   tt <- aou_create_temp_table(df, con = con)
   expect_equal(nrow(dplyr::collect(tt)), 2)
 })
+
+test_that("aou_create_temp_table handles quotes and semicolons in string values", {
+  con <- local_duckdb()
+  # apostrophes require '' escaping on DuckDB; semicolons must not split the
+  # INSERT statement (concept names like "Alpha-fetoprotein (AFP); serum")
+  df <- data.frame(
+    concept_id = c(1L, 2L, 3L),
+    concept_name = c("fetus's membranes", "Alpha-fetoprotein (AFP); serum", "plain name")
+  )
+  tt <- aou_create_temp_table(df, con = con)
+  res <- dplyr::collect(tt)
+  expect_equal(nrow(res), 3)
+  expect_true("Alpha-fetoprotein (AFP); serum" %in% res$concept_name)
+  expect_true("fetus's membranes" %in% res$concept_name)
+})
+
+test_that("split_sql_statements ignores semicolons inside string literals", {
+  stmts <- split_sql_statements("INSERT INTO t VALUES ('a; b'); SELECT * FROM t")
+  expect_length(stmts, 2)
+  expect_match(stmts[1], "a; b", fixed = TRUE)
+})

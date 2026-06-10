@@ -47,18 +47,32 @@ aou_create_temp_table <- function(data, nchar_batch = 1000000, ..., con = getOpt
   add_date <- function(d) {
     paste0("DATE '", as.character(d), "'")
   }
-  data <- data %>% dplyr::mutate(
-    dplyr::across(dplyr::where(is.factor), as.character),
-    dplyr::across(
-      dplyr::where(is.character),
-      ~ stringr::str_replace_all(.x, "\\'", "\\\\'")
-    ),
-    dplyr::across(
-      dplyr::where(is.character),
-      ~ stringr::str_replace_all(.x, "\\\"", "\\\\\"")
-    ),
-    dplyr::across(dplyr::where(is.character), add_q)
-  )
+  # quote escaping is dialect-specific: BigQuery uses backslash escapes (\' \"),
+  # while DuckDB/ANSI SQL escapes a single quote by doubling it ('').
+  is_bq <- is.null(con) || inherits(con, "BigQueryConnection")
+  if (is_bq) {
+    data <- data %>% dplyr::mutate(
+      dplyr::across(dplyr::where(is.factor), as.character),
+      dplyr::across(
+        dplyr::where(is.character),
+        ~ stringr::str_replace_all(.x, "\\'", "\\\\'")
+      ),
+      dplyr::across(
+        dplyr::where(is.character),
+        ~ stringr::str_replace_all(.x, "\\\"", "\\\\\"")
+      ),
+      dplyr::across(dplyr::where(is.character), add_q)
+    )
+  } else {
+    data <- data %>% dplyr::mutate(
+      dplyr::across(dplyr::where(is.factor), as.character),
+      dplyr::across(
+        dplyr::where(is.character),
+        ~ stringr::str_replace_all(.x, "'", "''")
+      ),
+      dplyr::across(dplyr::where(is.character), add_q)
+    )
+  }
   cn <- colnames(data)
   ct <- stringr::str_replace_all(sapply(data, class), c(
     character = "STRING",

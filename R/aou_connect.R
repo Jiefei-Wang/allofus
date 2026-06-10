@@ -289,6 +289,48 @@ get_query_table <- function(q, collect = FALSE, ..., con = getOption("aou.defaul
   res
 }
 
+#' Split a SQL string into statements on `;`, ignoring `;` inside string literals
+#'
+#' A naive `strsplit(q, ";")` breaks statements whose string literals contain a
+#' semicolon (e.g. medical concept names like "Alpha-fetoprotein (AFP); serum"
+#' inserted by `aou_create_temp_table()`). This walks the string, tracking
+#' single-quoted literals (with `''` treated as an escaped quote), and only
+#' splits at top-level semicolons. Falls back to a fast split when there are no
+#' string literals (the common case for internally-generated SQL).
+#' @keywords internal
+#' @noRd
+split_sql_statements <- function(q) {
+  if (!grepl("'", q, fixed = TRUE)) {
+    return(strsplit(q, ";", fixed = TRUE)[[1]])
+  }
+  chars <- strsplit(q, "", fixed = TRUE)[[1]]
+  n <- length(chars)
+  stmts <- character(0)
+  start <- 1L
+  in_str <- FALSE
+  i <- 1L
+  while (i <= n) {
+    ch <- chars[i]
+    if (in_str) {
+      if (ch == "'") {
+        if (i < n && chars[i + 1L] == "'") {
+          i <- i + 2L # escaped quote ('')
+          next
+        }
+        in_str <- FALSE
+      }
+    } else if (ch == "'") {
+      in_str <- TRUE
+    } else if (ch == ";") {
+      stmts <- c(stmts, paste0(chars[start:(i - 1L)], collapse = ""))
+      start <- i + 1L
+    }
+    i <- i + 1L
+  }
+  if (start <= n) stmts <- c(stmts, paste0(chars[start:n], collapse = ""))
+  stmts
+}
+
 #' Execute a query on a non-BigQuery (local DBI) backend
 #'
 #' Runs the SQL that allofus would otherwise send to BigQuery on a generic DBI
@@ -303,7 +345,7 @@ get_query_table_local <- function(q, collect = FALSE, con = NULL) {
   q <- gsub("`", "", q) # BigQuery backtick identifiers -> bare (valid in DuckDB)
   q <- gsub("\\bFLOAT64\\b", "DOUBLE", q) # BigQuery type name -> DuckDB
 
-  stmts <- trimws(strsplit(q, ";")[[1]])
+  stmts <- trimws(split_sql_statements(q))
   stmts <- stmts[nzchar(stmts)]
   last <- stmts[length(stmts)]
   prelim <- if (length(stmts) > 1) stmts[-length(stmts)] else character(0)
