@@ -211,7 +211,13 @@ aou_sql <- function(query, collect = FALSE, debug = FALSE, ..., con = getOption(
     cli::cli_h1("END SQL QUERY")
   }
 
-  if (Sys.getenv("GOOGLE_PROJECT") == "") {
+  # The GOOGLE_PROJECT requirement only applies to the BigQuery backend. With a
+  # non-BigQuery connection (e.g. a local DuckDB database), the query runs
+  # through DBI in get_query_table(), so skip the Workbench guard. Note that
+  # user-supplied raw SQL must be portable to run locally (avoid BigQuery-only
+  # constructs such as COUNTIF, REGEXP_CONTAINS, APPROX_QUANTILES).
+  if (Sys.getenv("GOOGLE_PROJECT") == "" &&
+    (is.null(con) || inherits(con, "BigQueryConnection"))) {
     cli::cli_abort(c('This function only works on the Researcher Workbench. Please ensure you have a valid Google Cloud project set up by checking {.code Sys.getenv("GOOGLE_PROJECT")}.'),
       call = NULL
     )
@@ -256,6 +262,15 @@ get_query_table <- function(q, collect = FALSE, ..., con = getOption("aou.defaul
     ))
   }
 
+  # Backend-aware execution. On the All of Us Researcher Workbench the
+  # connection is a BigQueryConnection and queries run through bigrquery. For
+  # any other DBI backend (e.g. a local DuckDB database such as the one created
+  # by the mockallofus package), execute the query through DBI instead, so the
+  # same allofus code can run locally for development. See get_query_table_local().
+  if (!is.null(con) && !inherits(con, "BigQueryConnection")) {
+    return(get_query_table_local(q, collect = collect, con = con))
+  }
+
   tbl_obj <- bigrquery::bq_project_query(
     Sys.getenv("GOOGLE_PROJECT"),
     query = q, temporary = TRUE
@@ -272,6 +287,80 @@ get_query_table <- function(q, collect = FALSE, ..., con = getOption("aou.defaul
   res <- dplyr::tbl(con, tbl_name) %>% dplyr::filter(1 > 0)
 
   res
+}
+
+#' Execute a query on a non-BigQuery (local DBI) backend
+#'
+#' Runs the SQL that allofus would otherwise send to BigQuery on a generic DBI
+#' connection (e.g. local DuckDB), applying the small set of dialect adjustments
+#' needed for the BigQuery-flavored SQL allofus emits: stripping BigQuery
+#' backtick identifier quoting and mapping the `FLOAT64` type name to `DOUBLE`.
+#' Handles the multi-statement `CREATE TEMP TABLE ...; SELECT * FROM ...` form
+#' produced by `aou_compute()` / `aou_observation_period()` / `aou_create_temp_table()`.
+#' @keywords internal
+#' @noRd
+get_query_table_local <- function(q, collect = FALSE, con = NULL) {
+  q <- gsub("`", "", q) # BigQuery backtick identifiers -> bare (valid in DuckDB)
+  q <- gsub("\\bFLOAT64\\b", "DOUBLE", q) # BigQuery type name -> DuckDB
+
+  stmts <- trimws(strsplit(q, ";")[[1]])
+  stmts <- stmts[nzchar(stmts)]
+  last <- stmts[length(stmts)]
+  prelim <- if (length(stmts) > 1) stmts[-length(stmts)] else character(0)
+
+  unique_name <- function() paste0("aou_tmp_", paste(sample(c(letters, 0:9), 12, TRUE), collapse = ""))
+  select_star_from <- function(x) {
+    regmatches(x, regexec("(?i)^SELECT\\s+\\*\\s+FROM\\s+\"?([A-Za-z0-9_.]+)\"?\\s*$", x, perl = TRUE))[[1]]
+  }
+
+  # Special-case the script wrap emitted by aou_compute() and
+  # aou_observation_period():  CREATE TEMP TABLE <name> AS <inner> ; SELECT * FROM <name>
+  # Re-materialize <inner> under a fresh unique name and return a reference to
+  # it. This mirrors BigQuery, where each query yields a new temporary table, so
+  # chained calls (e.g. inside aou_survey()) don't collide on a reused fixed
+  # name such as "table1".
+  if (length(stmts) == 2) {
+    cm <- regmatches(prelim[1], regexec(
+      "(?is)^CREATE\\s+(?:TEMP(?:ORARY)?\\s+)?TABLE\\s+\"?([A-Za-z0-9_.]+)\"?\\s+AS\\s+(.*)$",
+      prelim[1], perl = TRUE
+    ))[[1]]
+    lm <- select_star_from(last)
+    if (length(cm) == 3 && length(lm) == 2 &&
+      identical(gsub('"', "", cm[2]), gsub('"', "", lm[2]))) {
+      inner <- cm[3]
+      if (isTRUE(collect)) {
+        return(DBI::dbGetQuery(con, inner))
+      }
+      nm <- unique_name()
+      DBI::dbExecute(con, paste0("CREATE TEMP TABLE ", nm, " AS ", inner))
+      return(dplyr::tbl(con, nm) %>% dplyr::filter(1 > 0))
+    }
+  }
+
+  # General multi-statement path (e.g. aou_create_temp_table's CREATE/INSERT/SELECT,
+  # which uses freshly randomized table names). Drop-if-exists before each CREATE
+  # for idempotency, run the statements, then reference the final result.
+  for (s in prelim) {
+    nm <- regmatches(s, regexec(
+      "(?i)\\bCREATE\\s+(?:TEMP(?:ORARY)?\\s+)?TABLE\\s+\"?([A-Za-z0-9_.]+)\"?",
+      s, perl = TRUE
+    ))[[1]]
+    if (length(nm) == 2) {
+      DBI::dbExecute(con, paste0("DROP TABLE IF EXISTS ", nm[2]))
+    }
+    DBI::dbExecute(con, s)
+  }
+
+  if (isTRUE(collect)) {
+    return(DBI::dbGetQuery(con, last))
+  }
+  lm <- select_star_from(last)
+  if (length(lm) == 2) {
+    return(dplyr::tbl(con, gsub('"', "", lm[2])) %>% dplyr::filter(1 > 0))
+  }
+  nm <- unique_name()
+  DBI::dbExecute(con, paste0("CREATE TEMP TABLE ", nm, " AS ", last))
+  dplyr::tbl(con, nm) %>% dplyr::filter(1 > 0)
 }
 
 

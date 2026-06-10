@@ -95,13 +95,18 @@ aou_create_temp_table <- function(data, nchar_batch = 1000000, ..., con = getOpt
     s3 <- batches[i]
     s4 <- stringr::str_glue("SELECT * FROM {dataset};")
     q <- paste(s1, s2, s3, s4)
-    tmptbl_object <- bigrquery::bq_project_query(Sys.getenv("GOOGLE_PROJECT"),
-      query = q
-    )
-    n[[i]] <- dplyr::tbl(con, paste(tmptbl_object$project, tmptbl_object$dataset,
-      tmptbl_object$table,
-      sep = (".")
-    ))
+    if (!is.null(con) && !inherits(con, "BigQueryConnection")) {
+      # local (non-BigQuery) backend, e.g. DuckDB: execute through DBI
+      n[[i]] <- get_query_table(q, collect = FALSE, con = con)
+    } else {
+      tmptbl_object <- bigrquery::bq_project_query(Sys.getenv("GOOGLE_PROJECT"),
+        query = q
+      )
+      n[[i]] <- dplyr::tbl(con, paste(tmptbl_object$project, tmptbl_object$dataset,
+        tmptbl_object$table,
+        sep = (".")
+      ))
+    }
   }
 
   final_tbl <- purrr::reduce(n, dplyr::union_all)
