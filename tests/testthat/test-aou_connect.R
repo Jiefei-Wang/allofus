@@ -25,6 +25,6 @@ test_that("aou_sql correctly evaluates references to `CDR` when specified", {
   skip_workbench()
 
   query <- "SELECT COUNT(*) FROM `{CDR}.person`"
-  result <- aou_sql(query, collect = TRUE, CDR = paste0(Sys.getenv("WORKSPACE_CDR"), "_base"))
+  result <- aou_sql(query, collect = TRUE, CDR = Sys.getenv("WORKSPACE_CDR"))
   expect_true(result > 0)
 })
