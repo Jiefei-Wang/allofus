@@ -31,17 +31,13 @@ aou_create_bucket <- function(temporary = FALSE,
   already_exists <- is.null(attr(existing, "status"))
 
   if (!already_exists) {
-    description <- if (isTRUE(temporary)) {
-      "Bucket for temporary storage of file data; automatically deleted after some time."
-    } else {
-      "Primary workspace bucket for storing files."
-    }
-
+    # --description is omitted: the `wb` CLI's argument parser splits on
+    # whitespace regardless of how the argument is passed from R, so any
+    # multi-word description gets misread as unmatched extra arguments
     create_args <- c(
       "resource", "create", "gcs-bucket",
       paste0("--name=", name),
-      "--cloning=COPY_NOTHING",
-      paste0("--description=", description)
+      "--cloning=COPY_NOTHING"
     )
     if (isTRUE(temporary)) {
       create_args <- c(create_args, paste0("--auto-delete=", auto_delete))
