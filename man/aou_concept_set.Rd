@@ -66,7 +66,7 @@ Retrieves occurrences of a concept set from the All of Us
 database for a given cohort.
 }
 \examples{
-\dontshow{if (on_workbench()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (on_workbench()) withAutoprint(\{ # examplesIf}
 # indicator for any aspirin at any time
 
 con <- aou_connect()

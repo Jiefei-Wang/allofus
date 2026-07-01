@@ -57,7 +57,7 @@ changes the default suffix from .x/.y to _x/_y for cases with shared column
 names not specified by the \code{by} argument which will result in a SQL error.
 }
 \examples{
-\dontshow{if (on_workbench()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (on_workbench()) withAutoprint(\{ # examplesIf}
 
 con <- aou_connect()
 obs_tbl <- dplyr::tbl(con, "observation") \%>\%

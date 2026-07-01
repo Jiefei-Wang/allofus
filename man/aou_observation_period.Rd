@@ -76,7 +76,7 @@ elected to contribute data but have no data to contribute, they will not be
 included in the generated observation period table.
 }
 \examples{
-\dontshow{if (on_workbench()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (on_workbench()) withAutoprint(\{ # examplesIf}
 
 library(dplyr)
 con <- aou_connect()

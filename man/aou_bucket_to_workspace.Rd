@@ -37,7 +37,7 @@ your workspace where it can be read into R, e.g., using a function like
 the underlying function.
 }
 \examples{
-\dontshow{if (on_workbench()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (on_workbench()) withAutoprint(\{ # examplesIf}
 # save a file to the bucket
 tmp <- tempdir()
 write.csv(data.frame(x = 1), file.path(tmp, "testdata.csv"))

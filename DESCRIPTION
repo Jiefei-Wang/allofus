@@ -27,7 +27,8 @@ Imports:
     stringr,
     DBI,
     lifecycle,
-    bit64
+    bit64,
+    jsonlite
 Suggests:
     knitr,
     rmarkdown,
@@ -41,7 +42,7 @@ Suggests:
     SqlRender (>= 1.6.0),
     duckdb,
     withr
-RoxygenNote: 7.3.2
+RoxygenNote: 7.3.3
 URL: https://roux-ohdsi.github.io/allofus/, https://github.com/roux-ohdsi/allofus
 BugReports: https://github.com/roux-ohdsi/allofus/issues
 VignetteBuilder: knitr

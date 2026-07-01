@@ -21,7 +21,7 @@ loaded and their versions, and the All of Us CDR release that you are
 using.
 }
 \examples{
-\dontshow{if (on_workbench()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (on_workbench()) withAutoprint(\{ # examplesIf}
 allofus::aou_session_info()
 \dontshow{\}) # examplesIf}
 }

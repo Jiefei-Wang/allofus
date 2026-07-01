@@ -10,7 +10,7 @@
 #' @examples
 #' on_workbench()
 on_workbench <- function() {
-  Sys.getenv("WORKSPACE_CDR") != "" && Sys.getenv("WORKSPACE_BUCKET") != ""
+  Sys.getenv("WORKSPACE_CDR") != ""
 }
 
 #' Create a connection to the database in All of Us

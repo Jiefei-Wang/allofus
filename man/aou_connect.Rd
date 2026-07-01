@@ -31,7 +31,7 @@ the connection status (successful or not). For RStudio users, setting quiet = TR
 will silence most (but not all) billing messages.
 }
 \examples{
-\dontshow{if (on_workbench()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (on_workbench()) withAutoprint(\{ # examplesIf}
 con <- aou_connect()
 # reference the observation table in the database
 dplyr::tbl(con, "observation")

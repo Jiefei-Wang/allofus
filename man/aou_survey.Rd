@@ -82,7 +82,7 @@ related conditions), a skip response if the question was skipped, and NA if
 the respondent did not answer the question.
 }
 \examples{
-\dontshow{if (on_workbench()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (on_workbench()) withAutoprint(\{ # examplesIf}
 
 con <- aou_connect()
 cohort <- dplyr::tbl(con, "person") \%>\%
