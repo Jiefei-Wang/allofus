@@ -1,3 +1,13 @@
+#' @keywords internal
+check_bucket <- function(bucket) {
+  if (is.null(bucket) || bucket == "") {
+    cli::cli_abort(
+      "No bucket configured. Run {.code aou_create_bucket()} first, or provide {.arg bucket} directly.",
+      call = NULL
+    )
+  }
+}
+
 #' List the current files in your workspace
 #'
 #' @description Lists all data files in the workspace or files matching a
@@ -64,6 +74,8 @@ aou_ls_workspace <- function(pattern = "", silent = FALSE, ...) {
 #' aou_ls_bucket("*.csv")
 #'
 aou_ls_bucket <- function(pattern = "", silent = FALSE, recursive = TRUE, bucket = getOption("aou.default.bucket"), gsutil_args = "") {
+  check_bucket(bucket)
+
   if (recursive) {
     gsutil_args <- paste("-r", gsutil_args)
   }
@@ -117,6 +129,8 @@ aou_ls_bucket <- function(pattern = "", silent = FALSE, recursive = TRUE, bucket
 #'
 #'
 aou_bucket_to_workspace <- function(file, directory = FALSE, bucket = getOption("aou.default.bucket")) {
+  check_bucket(bucket)
+
   # # Copy the file from current workspace to the bucket
   bucket_files <- allofus::aou_ls_bucket(silent = TRUE)
 
@@ -180,6 +194,8 @@ aou_bucket_to_workspace <- function(file, directory = FALSE, bucket = getOption(
 #' aou_workspace_to_bucket(tmp, directory = TRUE)
 aou_workspace_to_bucket <- function(file, directory = FALSE,
                                     bucket = getOption("aou.default.bucket")) {
+  check_bucket(bucket)
+
   if (any(stringr::str_detect(file, " "))) {
     cli::cli_abort("File names cannot contain spaces. Consider using underscores or hyphens instead.")
   }

@@ -1,47 +1,23 @@
 #' @keywords internal
 .onLoad <- function(libname = find.package("allofus"), pkgname = "allofus") {
-  # if the verily env vars aren't set, try to source them from ~/.aou-env
-  # (workbench 1.0-style manual setup), then fall back to querying the
-  # Workbench Manager API directly (workbench 2.0, where WORKSPACE_CDR is
-  # never injected as an OS env var)
+  # if the verily env vars aren't set, try to source them from the ~/.aou-env
+  # cache first (fast: no subprocess calls), then fall back to querying the
+  # Workbench CLI directly (workbench 2.0, where WORKSPACE_CDR is never
+  # injected as an OS env var), caching the result for next time
   if (Sys.getenv("WORKSPACE_CDR") == "") {
-    aou_env_path <- path.expand("~/.aou-env")
+    cached <- read_aou_env()
 
-    if (file.exists(aou_env_path)) {
-      lines <- readLines(aou_env_path, warn = FALSE)
-      lines <- lines[grepl("^\\s*export\\s+[^=]+=", lines)]
-      kv <- sub("^\\s*export\\s+", "", lines)
-      keys <- sub("=.*$", "", kv)
-      vals <- gsub('^"|"$', "", sub("^[^=]+=", "", kv))
-      names(vals) <- keys
-
-      # set CDR and bucket directly from the file
-      to_set <- list(
-        WORKSPACE_CDR = unname(vals["WORKSPACE_CDR"]),
-        WORKSPACE_BUCKET = unname(vals["WORKSPACE_BUCKET"])
-      )
-
-      # derive billing project from the bucket: strip leading "gs://cloned-mybucket-"
-      if (!is.na(vals["WORKSPACE_BUCKET"])) {
-        google_project <- sub(
-          "^gs://cloned-mybucket-",
-          "",
-          vals["WORKSPACE_BUCKET"]
-        )
-        to_set$GOOGLE_PROJECT <- unname(google_project)
-      }
-
-      # only set vars that have a value and aren't already set
-      to_set <- to_set[
-        !vapply(to_set, function(x) is.na(x) || x == "", logical(1))
-      ]
+    if (!is.na(cached["WORKSPACE_CDR"]) && cached["WORKSPACE_CDR"] != "") {
+      to_set <- as.list(cached)
       to_set <- to_set[Sys.getenv(names(to_set)) == ""]
-
       if (length(to_set) > 0) do.call(Sys.setenv, to_set)
     } else {
-      to_set <- tryCatch(workbench_env_vars(), error = function(e) NULL)
-      to_set <- to_set[Sys.getenv(names(to_set)) == ""]
-      if (length(to_set) > 0) do.call(Sys.setenv, to_set)
+      resolved <- tryCatch(workbench_env_vars(), error = function(e) NULL)
+      if (length(resolved) > 0) {
+        write_aou_env(resolved)
+        resolved <- resolved[Sys.getenv(names(resolved)) == ""]
+        if (length(resolved) > 0) do.call(Sys.setenv, resolved)
+      }
     }
   }
 
@@ -56,6 +32,44 @@
     options(op.aou[toset])
   }
   invisible()
+}
+
+#' Read cached workspace environment variables from `~/.aou-env`
+#' @return A named character vector (empty if the file doesn't exist).
+#' @keywords internal
+read_aou_env <- function() {
+  aou_env_path <- path.expand("~/.aou-env")
+  if (!file.exists(aou_env_path)) {
+    return(character(0))
+  }
+
+  lines <- readLines(aou_env_path, warn = FALSE)
+  lines <- lines[grepl("^\\s*export\\s+[^=]+=", lines)]
+  kv <- sub("^\\s*export\\s+", "", lines)
+  keys <- sub("=.*$", "", kv)
+  vals <- gsub('^"|"$', "", sub("^[^=]+=", "", kv))
+  names(vals) <- keys
+  vals
+}
+
+#' Write workspace environment variables to the `~/.aou-env` cache
+#' @description Merges `vars` into whatever is already cached (e.g., a
+#'   previously-resolved `WORKSPACE_CDR`, or a bucket created in an earlier
+#'   session) rather than overwriting the file, so different functions can
+#'   cache different variables over time.
+#' @param vars A named list or character vector of environment variables to cache.
+#' @return Nothing; called for its side effect.
+#' @keywords internal
+write_aou_env <- function(vars) {
+  vars <- vars[!vapply(vars, function(x) is.null(x) || is.na(x) || x == "", logical(1))]
+  if (length(vars) == 0) {
+    return(invisible(NULL))
+  }
+
+  merged <- utils::modifyList(as.list(read_aou_env()), as.list(vars))
+  lines <- paste0("export ", names(merged), "=\"", unlist(merged), "\"")
+  writeLines(lines, path.expand("~/.aou-env"))
+  invisible(NULL)
 }
 
 #' Fetch workspace environment variables from the Workbench CLI

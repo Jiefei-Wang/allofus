@@ -6,6 +6,21 @@
 #'   `WORKSPACE_BUCKET` (or `WORKSPACE_TEMP_BUCKET` if `temporary = TRUE`) for
 #'   the current R session, so functions like `aou_ls_bucket()` work without
 #'   further setup.
+#' @details The resolved bucket URL is cached to `~/.aou-env` (alongside
+#'   `WORKSPACE_CDR` and `GOOGLE_PROJECT`, which are cached there the same
+#'   way when the package loads). This means you only need to run
+#'   `aou_create_bucket()` once per workspace, not once per session: on
+#'   subsequent loads, `library(allofus)` reads the cached values from
+#'   `~/.aou-env` directly instead of recreating anything or re-querying the
+#'   `wb` CLI.
+#'
+#'   To see what's currently cached (e.g., to check which buckets you've
+#'   already created in this workspace), read the file directly:
+#'   `cat(readLines("~/.aou-env"))`. Each line is a plain
+#'   `export VARIABLE="value"` entry. If a cached value ever goes stale (for
+#'   example, a bucket was deleted outside of R), delete the corresponding
+#'   line, or delete the file entirely to force everything to be re-resolved
+#'   on the next `library(allofus)` call.
 #' @param temporary If `TRUE`, creates a temporary bucket whose contents are
 #'   automatically deleted after `auto_delete` days, instead of the
 #'   persistent workspace bucket. Useful for intermediate files you don't
@@ -61,6 +76,7 @@ aou_create_bucket <- function(temporary = FALSE,
   env_list <- list(bucket_url)
   names(env_list) <- env_var
   do.call(Sys.setenv, env_list)
+  write_aou_env(env_list)
 
   if (identical(env_var, "WORKSPACE_BUCKET")) {
     options(aou.default.bucket = bucket_url)

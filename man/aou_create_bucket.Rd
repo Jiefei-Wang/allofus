@@ -35,6 +35,23 @@ resolves it if a bucket with the same name already exists) and sets
 the current R session, so functions like \code{aou_ls_bucket()} work without
 further setup.
 }
+\details{
+The resolved bucket URL is cached to \verb{~/.aou-env} (alongside
+\code{WORKSPACE_CDR} and \code{GOOGLE_PROJECT}, which are cached there the same
+way when the package loads). This means you only need to run
+\code{aou_create_bucket()} once per workspace, not once per session: on
+subsequent loads, \code{library(allofus)} reads the cached values from
+\verb{~/.aou-env} directly instead of recreating anything or re-querying the
+\code{wb} CLI.
+
+To see what's currently cached (e.g., to check which buckets you've
+already created in this workspace), read the file directly:
+\code{cat(readLines("~/.aou-env"))}. Each line is a plain
+\verb{export VARIABLE="value"} entry. If a cached value ever goes stale (for
+example, a bucket was deleted outside of R), delete the corresponding
+line, or delete the file entirely to force everything to be re-resolved
+on the next \code{library(allofus)} call.
+}
 \examples{
 \dontshow{if (on_workbench()) withAutoprint(\{ # examplesIf}
 aou_create_bucket()

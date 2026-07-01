@@ -17,8 +17,28 @@ knitr::opts_chunk$set(
 
 The `allofus` package includes several functions designed to help you manage and transfer files between your personal workspace and a shared bucket in Google BigQuery. Understanding the difference between these two storage locations is crucial: 
 
-- **Workspace**: This is your personal storage area. Files here are accessible only to you and will be deleted if you delete your environment. 
+- **Workspace**: This is your personal storage area. Files here are accessible only to you and will be deleted if you delete your environment.
 - **Bucket** : This is a shared storage space. Files in the bucket can be accessed by collaborators on your project and are used for permanent storage.
+
+## Setting Up a Bucket
+
+Newer ("workbench 2.0") All of Us workspaces don't come with a bucket already set up, so `aou_ls_bucket()` and the other bucket functions below have nothing to point to until you create one. Run this once per workspace:
+
+```{r}
+aou_create_bucket()
+```
+
+This creates (or resolves, if you've already created one) a bucket named `"workspace-bucket"` and sets `WORKSPACE_BUCKET` for you. You can also create a temporary bucket, whose contents are automatically deleted after a couple of weeks, for intermediate files you don't need to keep:
+
+```{r}
+aou_create_bucket(temporary = TRUE)
+```
+
+You only need to do this once: the resolved bucket URL is cached to `~/.aou-env`, so future R sessions pick it up automatically without recreating anything. If you ever want to check what's cached (e.g., which buckets you've already created in this workspace), you can read the file directly:
+
+```{r}
+cat(readLines("~/.aou-env"))
+```
 
 ## Listing Files
 ### In Your Workspace
