@@ -60,8 +60,14 @@ test_that("chained aou_compute() calls do not collide on a reused temp name", {
 test_that("aou_create_temp_table works on a local DuckDB connection", {
   con <- local_duckdb()
   df <- data.frame(concept_id = c(201826L, 4193704L), category = c("a", "b"))
-  tt <- aou_create_temp_table(df, con = con)
+  tt <- suppressWarnings(aou_create_temp_table(df, con = con))
   expect_equal(nrow(dplyr::collect(tt)), 2)
+})
+
+test_that("aou_create_temp_table warns that joins aren't supported", {
+  con <- local_duckdb()
+  df <- data.frame(concept_id = c(201826L, 4193704L), category = c("a", "b"))
+  expect_warning(aou_create_temp_table(df, con = con), "cannot be used in a join")
 })
 
 test_that("aou_create_temp_table handles quotes and semicolons in string values", {
@@ -72,7 +78,7 @@ test_that("aou_create_temp_table handles quotes and semicolons in string values"
     concept_id = c(1L, 2L, 3L),
     concept_name = c("fetus's membranes", "Alpha-fetoprotein (AFP); serum", "plain name")
   )
-  tt <- aou_create_temp_table(df, con = con)
+  tt <- suppressWarnings(aou_create_temp_table(df, con = con))
   res <- dplyr::collect(tt)
   expect_equal(nrow(res), 3)
   expect_true("Alpha-fetoprotein (AFP); serum" %in% res$concept_name)

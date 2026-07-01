@@ -56,10 +56,35 @@ vignette to learn how to use the package.
 A community workspace on the *All of Us* Researcher Workbench will soon
 be available.
 
+### A note on “Workbench 2.0”
+
+The All of Us Researcher Workbench has migrated to a new, Verily-based
+platform (“Workbench 2.0”). A few things work differently there compared
+to the original workbench:
+
+- **Buckets aren’t created automatically.** Workbench 2.0 workspaces no
+  longer come with a `WORKSPACE_BUCKET` set up for you. Run
+  `aou_create_bucket()` once per workspace to create one (or
+  `aou_create_bucket(temporary = TRUE)` for a bucket that auto-deletes
+  its contents after a couple of weeks) before using `aou_ls_bucket()`
+  and related functions.
+- **Environment variables are resolved behind the scenes.**
+  `WORKSPACE_CDR` and `GOOGLE_PROJECT` are no longer injected as OS
+  environment variables on workbench 2.0. `allofus` resolves them
+  automatically via the `wb` CLI when the package loads, and caches the
+  result to `~/.aou-env` so subsequent sessions don’t need to re-resolve
+  them.
+- **`aou_create_temp_table()` currently doesn’t support joins.** The
+  temporary table it creates can be queried directly (e.g., with
+  `dplyr::collect()`), but it currently can’t be used in a join with
+  another table in a later query. This seems to be a limitation in how
+  the workbench is set up; it is unclear if it can be fixed.
+
 ### Citation
 
 Please cite the `allofus` package as:
 <p>
+
 Smith LH, Cavanaugh R (2024). “allofus: An R Package to Facilitate Use
 of the All of Us Researcher Workbench.” <em>Journal of the American
 Medical Informatics Association</em>, ocae198.
