@@ -58,65 +58,55 @@
   invisible()
 }
 
-#' Fetch workspace environment variables from the Workbench Manager API
+#' Fetch workspace environment variables from the Workbench CLI
 #' @description On workbench 2.0 (Verily-based), WORKSPACE_CDR is never
 #'   injected as an OS env var the way it was on classic Terra-based
-#'   workbenches, and there's no `~/.aou-env` file created automatically. This
-#'   reads workspace identity out of `~/.workbench/context.json`, gets a
-#'   short-lived access token from the `wb` CLI, and queries the Workspace
-#'   Manager API directly for the referenced BigQuery CDR dataset. Returns
-#'   `NULL` (never errors) if any step fails, so `.onLoad()` can proceed
-#'   without env vars set.
+#'   workbenches, and there's no `~/.aou-env` file created automatically.
+#'   `wb auth print-access-token` can't be used to hit the Workspace Manager
+#'   API directly here: it returns the workspace's pet service account
+#'   identity (a GCE VM instance-identity token), which the API doesn't
+#'   accept, rather than the logged-in user's credential. `wb resource list`
+#'   sidesteps this entirely by having the CLI handle its own authentication
+#'   internally. Returns `NULL` (never errors) if any step fails, so
+#'   `.onLoad()` can proceed without env vars set.
 #' @return A named list with `WORKSPACE_CDR` and (if available) `GOOGLE_PROJECT`,
 #'   or `NULL`.
 #' @keywords internal
 workbench_env_vars <- function() {
-  context_path <- path.expand("~/.workbench/context.json")
-  if (!file.exists(context_path) || !requireNamespace("jsonlite", quietly = TRUE)) {
+  if (!requireNamespace("jsonlite", quietly = TRUE)) {
     return(NULL)
   }
 
-  context <- jsonlite::fromJSON(context_path, simplifyVector = FALSE)
-  workspace_id <- context$workspace$uuid
-  wsm_uri <- context$server$workspaceManagerUri
-  if (is.null(workspace_id) || is.null(wsm_uri)) {
+  response <- suppressWarnings(system2("wb", c("resource", "list", "--format=json"), stdout = TRUE, stderr = FALSE))
+  resources <- tryCatch(
+    jsonlite::fromJSON(paste(response, collapse = "\n"), simplifyVector = FALSE),
+    error = function(e) NULL
+  )
+  if (is.null(resources)) {
     return(NULL)
   }
-
-  # context.json's config$wbPath can point to a stale location, so rely on
-  # PATH resolution (same as the `wb` CLI's own shell scripts do) rather than
-  # trusting it
-  token <- suppressWarnings(system2("wb", c("auth", "print-access-token"), stdout = TRUE, stderr = FALSE))
-  if (length(token) != 1 || token == "") {
-    return(NULL)
-  }
-
-  resources_url <- paste0(wsm_uri, "/api/workspaces/v1/", workspace_id, "/resources")
-  response <- suppressWarnings(system2(
-    "curl",
-    c("-s", "-H", paste0("Authorization: Bearer ", token), resources_url),
-    stdout = TRUE, stderr = FALSE
-  ))
-  resources <- jsonlite::fromJSON(paste(response, collapse = "\n"), simplifyVector = FALSE)$resources
 
   # the main CDR is a referenced BigQuery dataset; workspaces can also have a
   # "prep_"-prefixed scratch dataset alongside it, which we don't want
   cdr_resource <- purrr::detect(
     resources,
-    ~ .x$metadata$resourceType == "BIG_QUERY_DATASET" &&
-      .x$metadata$stewardshipType == "REFERENCED" &&
-      !startsWith(.x$metadata$name, "prep_")
+    ~ .x$resourceType %in% c("BQ_DATASET", "BIGQUERY_DATASET", "BIG_QUERY_DATASET") &&
+      .x$stewardshipType == "REFERENCED" &&
+      !startsWith(.x$datasetId, "prep_")
   )
   if (is.null(cdr_resource)) {
     return(NULL)
   }
 
-  bq <- cdr_resource$resourceAttributes$gcpBqDataset
-  to_set <- list(WORKSPACE_CDR = paste0(bq$projectId, ".", bq$datasetId))
+  to_set <- list(WORKSPACE_CDR = paste0(cdr_resource$projectId, ".", cdr_resource$datasetId))
 
-  google_project <- context$workspace$googleProjectId
-  if (!is.null(google_project) && google_project != "") {
-    to_set$GOOGLE_PROJECT <- google_project
+  context_path <- path.expand("~/.workbench/context.json")
+  if (file.exists(context_path)) {
+    context <- tryCatch(jsonlite::fromJSON(context_path, simplifyVector = FALSE), error = function(e) NULL)
+    google_project <- context$workspace$googleProjectId
+    if (!is.null(google_project) && google_project != "") {
+      to_set$GOOGLE_PROJECT <- google_project
+    }
   }
 
   to_set

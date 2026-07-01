@@ -2,7 +2,7 @@
 % Please edit documentation in R/zzz.R
 \name{workbench_env_vars}
 \alias{workbench_env_vars}
-\title{Fetch workspace environment variables from the Workbench Manager API}
+\title{Fetch workspace environment variables from the Workbench CLI}
 \usage{
 workbench_env_vars()
 }
@@ -13,11 +13,13 @@ or \code{NULL}.
 \description{
 On workbench 2.0 (Verily-based), WORKSPACE_CDR is never
 injected as an OS env var the way it was on classic Terra-based
-workbenches, and there's no \verb{~/.aou-env} file created automatically. This
-reads workspace identity out of \verb{~/.workbench/context.json}, gets a
-short-lived access token from the \code{wb} CLI, and queries the Workspace
-Manager API directly for the referenced BigQuery CDR dataset. Returns
-\code{NULL} (never errors) if any step fails, so \code{.onLoad()} can proceed
-without env vars set.
+workbenches, and there's no \verb{~/.aou-env} file created automatically.
+\verb{wb auth print-access-token} can't be used to hit the Workspace Manager
+API directly here: it returns the workspace's pet service account
+identity (a GCE VM instance-identity token), which the API doesn't
+accept, rather than the logged-in user's credential. \verb{wb resource list}
+sidesteps this entirely by having the CLI handle its own authentication
+internally. Returns \code{NULL} (never errors) if any step fails, so
+\code{.onLoad()} can proceed without env vars set.
 }
 \keyword{internal}
