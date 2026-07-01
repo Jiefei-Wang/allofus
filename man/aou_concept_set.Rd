@@ -72,7 +72,7 @@ database for a given cohort.
 con <- aou_connect()
 
 aspirin_users <- aou_concept_set(dplyr::tbl(con, "person"),
-  concepts = 1191, concept_set_name = "aspirin", domains = "drug"
+  concepts = 1112807, concept_set_name = "aspirin", domains = "drug"
 )
 
 # starting with person table to create a cohort

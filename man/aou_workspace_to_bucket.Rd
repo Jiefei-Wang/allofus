@@ -37,7 +37,7 @@ the desired object as a file to the workspace (e.g., \code{write.csv(object, "fi
 the underlying function.
 }
 \examples{
-\dontshow{if (on_workbench()) withAutoprint(\{ # examplesIf}
+\dontshow{if (on_workbench() && nzchar(getOption("aou.default.bucket", ""))) withAutoprint(\{ # examplesIf}
 # create test files in a temporary directory
 tmp <- tempdir()
 write.csv(data.frame(x = 1), file.path(tmp, "testdata1.csv"))

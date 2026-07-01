@@ -131,7 +131,7 @@ aou_create_temp_table <- function(data, nchar_batch = 1000000, ..., con = getOpt
   final_tbl <- purrr::reduce(n, dplyr::union_all)
 
   cli::cli_warn(c(
-    "!" = "The temporary table returned by {.fn aou_create_temp_table} currently cannot be used in a join with another table.",
+    "!" = "The temporary table returned by {.fn aou_create_temp_table} currently cannot be used in a join with another CDR table.",
     "i" = "You can still query it directly, e.g. with {.fn dplyr::collect} or {.fn dplyr::filter}."
   ))
 

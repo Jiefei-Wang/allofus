@@ -36,7 +36,7 @@ Lists all files in the bucket or files matching a certain
 pattern.
 }
 \examples{
-\dontshow{if (on_workbench()) withAutoprint(\{ # examplesIf}
+\dontshow{if (on_workbench() && nzchar(getOption("aou.default.bucket", ""))) withAutoprint(\{ # examplesIf}
 # list all files, including in subdirectories
 aou_ls_bucket()
 # list all csv files

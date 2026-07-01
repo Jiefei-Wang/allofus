@@ -67,7 +67,7 @@ aou_ls_workspace <- function(pattern = "", silent = FALSE, ...) {
 #' @return A vector of file names
 #'
 #' @export
-#' @examplesIf on_workbench()
+#' @examplesIf on_workbench() && nzchar(getOption("aou.default.bucket", ""))
 #' # list all files, including in subdirectories
 #' aou_ls_bucket()
 #' # list all csv files
@@ -116,7 +116,7 @@ aou_ls_bucket <- function(pattern = "", silent = FALSE, recursive = TRUE, bucket
 #'
 #' @return Nothing
 #' @export
-#' @examplesIf on_workbench()
+#' @examplesIf on_workbench() && nzchar(getOption("aou.default.bucket", ""))
 #' # save a file to the bucket
 #' tmp <- tempdir()
 #' write.csv(data.frame(x = 1), file.path(tmp, "testdata.csv"))
@@ -181,7 +181,7 @@ aou_bucket_to_workspace <- function(file, directory = FALSE, bucket = getOption(
 #'   the underlying function.
 #' @return Nothing
 #' @export
-#' @examplesIf on_workbench()
+#' @examplesIf on_workbench() && nzchar(getOption("aou.default.bucket", ""))
 #' # create test files in a temporary directory
 #' tmp <- tempdir()
 #' write.csv(data.frame(x = 1), file.path(tmp, "testdata1.csv"))
