@@ -79,12 +79,14 @@ workbench_env_vars <- function() {
   context <- jsonlite::fromJSON(context_path, simplifyVector = FALSE)
   workspace_id <- context$workspace$uuid
   wsm_uri <- context$server$workspaceManagerUri
-  wb_path <- if (is.null(context$config$wbPath)) "wb" else context$config$wbPath
   if (is.null(workspace_id) || is.null(wsm_uri)) {
     return(NULL)
   }
 
-  token <- suppressWarnings(system2(wb_path, c("auth", "print-access-token"), stdout = TRUE, stderr = FALSE))
+  # context.json's config$wbPath can point to a stale location, so rely on
+  # PATH resolution (same as the `wb` CLI's own shell scripts do) rather than
+  # trusting it
+  token <- suppressWarnings(system2("wb", c("auth", "print-access-token"), stdout = TRUE, stderr = FALSE))
   if (length(token) != 1 || token == "") {
     return(NULL)
   }
