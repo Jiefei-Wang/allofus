@@ -22,6 +22,8 @@ using.
 }
 \examples{
 \dontshow{if (on_workbench()) withAutoprint(\{ # examplesIf}
-allofus::aou_session_info()
+library(allofus)
+con <- aou_connect()
+aou_session_info()
 \dontshow{\}) # examplesIf}
 }

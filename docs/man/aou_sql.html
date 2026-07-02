@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>aou_concept_codes – allofus</title>
+<title>aou_sql – allofus</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,8 +65,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../man/aou_concept_set.html" rel="next">
-<link href="../man/aou_compute.html" rel="prev">
+<link href="../man/aou_survey.html" rel="next">
+<link href="../man/aou_session_info.html" rel="prev">
 <link href="../images/favicon.ico" rel="icon">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -283,7 +318,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../man/aou_atlas_cohort.html">Reference</a></li><li class="breadcrumb-item"><a href="../man/aou_concept_codes.html">aou_concept_codes</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../man/aou_atlas_cohort.html">Reference</a></li><li class="breadcrumb-item"><a href="../man/aou_sql.html">aou_sql</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -398,7 +433,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../man/aou_concept_codes.html" class="sidebar-item-text sidebar-link active">
+  <a href="../man/aou_concept_codes.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">aou_concept_codes</span></a>
   </div>
 </li>
@@ -464,7 +499,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../man/aou_sql.html" class="sidebar-item-text sidebar-link">
+  <a href="../man/aou_sql.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">aou_sql</span></a>
   </div>
 </li>
@@ -522,50 +557,213 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#concept-codes-and-survey-answers" id="toc-concept-codes-and-survey-answers" class="nav-link active" data-scroll-target="#concept-codes-and-survey-answers">Concept codes and survey answers</a>
+  <li><a href="#execute-a-sql-query-on-the-all-of-us-database" id="toc-execute-a-sql-query-on-the-all-of-us-database" class="nav-link active" data-scroll-target="#execute-a-sql-query-on-the-all-of-us-database">Execute a SQL query on the All of Us database</a>
   <ul class="collapse">
   <li><a href="#description" id="toc-description" class="nav-link" data-scroll-target="#description">Description</a></li>
   <li><a href="#usage" id="toc-usage" class="nav-link" data-scroll-target="#usage">Usage</a></li>
-  <li><a href="#format" id="toc-format" class="nav-link" data-scroll-target="#format">Format</a></li>
+  <li><a href="#arguments" id="toc-arguments" class="nav-link" data-scroll-target="#arguments">Arguments</a></li>
+  <li><a href="#value" id="toc-value" class="nav-link" data-scroll-target="#value">Value</a></li>
+  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples">Examples</a></li>
   </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../man/aou_atlas_cohort.html">Reference</a></li><li class="breadcrumb-item"><a href="../man/aou_concept_codes.html">aou_concept_codes</a></li></ol></nav></header>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../man/aou_atlas_cohort.html">Reference</a></li><li class="breadcrumb-item"><a href="../man/aou_sql.html">aou_sql</a></li></ol></nav></header>
 
 
 
 
 
-<section id="concept-codes-and-survey-answers" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="concept-codes-and-survey-answers">Concept codes and survey answers</h2>
+<section id="execute-a-sql-query-on-the-all-of-us-database" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="execute-a-sql-query-on-the-all-of-us-database">Execute a SQL query on the All of Us database</h2>
 <section id="description" class="level3">
 <h3 class="anchored" data-anchor-id="description">Description</h3>
-<p>A data frame containing concept codes (<code>code</code>) and text responses (<code>answer</code>) for the SDOH and COPE surveys.</p>
+<p>Executes an SQL query on the All of Us database</p>
 </section>
 <section id="usage" class="level3">
 <h3 class="anchored" data-anchor-id="usage">Usage</h3>
-<pre><code class="language-R">aou_concept_codes
+<pre><code class="language-R">aou_sql(
+  query,
+  collect = FALSE,
+  debug = FALSE,
+  ...,
+  con = getOption("aou.default.con"),
+  CDR = getOption("aou.default.cdr")
+)
 </code></pre>
 </section>
-<section id="format" class="level3">
-<h3 class="anchored" data-anchor-id="format">Format</h3>
-<p>aou_concept_codes</p>
-<dl>
-<dt>
-code
-</dt>
-<dd>
-response from the observation table
-</dd>
-<dt>
-answer
-</dt>
-<dd>
-Text responses
-</dd>
-</dl>
+<section id="arguments" class="level3">
+<h3 class="anchored" data-anchor-id="arguments">Arguments</h3>
+<table role="presentation">
+<tbody><tr>
+<td style="white-space: collapse; font-family: monospace; vertical-align: top">
+<code id="query">query</code>
+</td>
+<td>
+A SQL query (BigQuery dialect) to be executed. Interpreted with <code>glue::glue()</code>, so expressions enclosed with braces will be evaluated. References to <code>“{CDR}”</code> or <code>“{cdr}”</code> will be evaluated automatically (see examples).
+</td>
+</tr>
+<tr>
+<td style="white-space: collapse; font-family: monospace; vertical-align: top">
+<code id="collect">collect</code>
+</td>
+<td>
+Whether to bring the resulting table into local memory (<code>collect = TRUE</code>) as a dataframe or leave as a reference to a database table (for continued analysis using, e.g., <code>dbplyr</code>). Defaults to <code>FALSE.</code>
+</td>
+</tr>
+<tr>
+<td style="white-space: collapse; font-family: monospace; vertical-align: top">
+<code id="debug">debug</code>
+</td>
+<td>
+Print the query to the console; useful for debugging.
+</td>
+</tr>
+<tr>
+<td style="white-space: collapse; font-family: monospace; vertical-align: top">
+<code id="...">…</code>
+</td>
+<td>
+All other arguments passed to <code>bigrquery::bq_table_download()</code> if <code>collect = TRUE</code>.
+</td>
+</tr>
+<tr>
+<td style="white-space: collapse; font-family: monospace; vertical-align: top">
+<code id="con">con</code>
+</td>
+<td>
+Connection to the allofus SQL database. Defaults to <code>getOption(“aou.default.con”)</code>, which is created automatically with <code>aou_connect()</code>. Only needed if <code>collect = FALSE</code>.
+</td>
+</tr>
+<tr>
+<td style="white-space: collapse; font-family: monospace; vertical-align: top">
+<code id="CDR">CDR</code>
+</td>
+<td>
+The name of the "curated data repository" that will be used in any references of the form <code>“{CDR}”</code> or <code>“{cdr}”</code> in the query (see examples). Defaults to <code>getOption(“aou.default.cdr”)</code>, which is <code>Sys.getenv(‘WORKSPACE_CDR’)</code> if not specified otherwise (i.e., the "mainline" CDR). On the controlled tier, specify the "base" CDR with <code>CDR = paste0(Sys.getenv(‘WORKSPACE_CDR’), “_base”)</code>.
+</td>
+</tr>
+</tbody></table>
+</section>
+<section id="value" class="level3">
+<h3 class="anchored" data-anchor-id="value">Value</h3>
+<p>A dataframe if <code>collect = TRUE</code>; a reference to a remote database table if not.</p>
+</section>
+<section id="examples" class="level3">
+<h3 class="anchored" data-anchor-id="examples">Examples</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"allofus"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>con <span class="ot">&lt;-</span> <span class="fu">aou_connect</span>()</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Examples based on AoU snippets</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">aou_sql</span>(<span class="st">"</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="st">  -- Compute the count of unique participants in our All of Us cohort.</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="st">  SELECT</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="st">  COUNT(DISTINCT person_id) AS total_number_of_participants</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="st">  FROM</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="st">  `{CDR}.person`</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="st">"</span>, <span class="at">collect =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 1
+  total_number_of_participants
+                         &lt;int&gt;
+1                       747029</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>MEASUREMENT_OF_INTEREST <span class="ot">&lt;-</span> <span class="st">"hemoglobin"</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">aou_sql</span>(<span class="st">'</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="st">-- Compute summary information for our measurements of interest for our cohort.</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="st">--</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="st">-- PARAMETERS:</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="st">--   MEASUREMENT_OF_INTEREST: a case-insensitive string, such as "hemoglobin", to be compared</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="st">--                            to all measurement concept names to identify those of interest</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="st">WITH</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="st">  --</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="st">  -- Use a case insensitive string to search the measurement concept names of those</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="st">  -- measurements we do have in the measurements table.</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="st">  --</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="st">  labs_of_interest AS (</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="st">  SELECT</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="st">    measurement_concept_id,</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="st">    measurement_concept.concept_name AS measurement_name,</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="st">    unit_concept_id,</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="st">    unit_concept.concept_name AS unit_name</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="st">  FROM</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="st">    `{CDR}.measurement`</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="st">  LEFT JOIN `{CDR}.concept` AS measurement_concept</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="st">  ON measurement_concept.concept_id = measurement_concept_id</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="st">  LEFT JOIN `{CDR}.concept` AS unit_concept</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="st">  ON unit_concept.concept_id = unit_concept_id</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="st">  WHERE</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="st">    REGEXP_CONTAINS(measurement_concept.concept_name, r"(?i){MEASUREMENT_OF_INTEREST}")</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="st">  GROUP BY</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="st">    measurement_concept_id,</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a><span class="st">    unit_concept_id,</span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="st">    measurement_concept.concept_name,</span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a><span class="st">    unit_concept.concept_name</span></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a><span class="st">)</span></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a><span class="st">  --</span></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a><span class="st">  -- Summarize the information about each measurement concept of interest that our</span></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a><span class="st">  -- prior query identified.</span></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a><span class="st">  --</span></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a><span class="st">SELECT</span></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a><span class="st">  measurement_name AS measurement,</span></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a><span class="st">  IFNULL(unit_name, "NA") AS unit,</span></span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a><span class="st">  COUNT(1) AS N,</span></span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a><span class="st">  COUNTIF(value_as_number IS NULL</span></span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a><span class="st">    AND (value_as_concept_id IS NULL</span></span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a><span class="st">      OR value_as_concept_id = 0)) AS missing,</span></span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a><span class="st">  MIN(value_as_number) AS min,</span></span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a><span class="st">  MAX(value_as_number) AS max,</span></span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a><span class="st">  AVG(value_as_number) AS avg,</span></span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a><span class="st">  STDDEV(value_as_number) AS stddev,</span></span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a><span class="st">  APPROX_QUANTILES(value_as_number, 4) AS quantiles,</span></span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a><span class="st">  COUNTIF(value_as_number IS NOT NULL) AS num_numeric_values,</span></span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a><span class="st">  COUNTIF(value_as_concept_id IS NOT NULL</span></span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a><span class="st">      AND value_as_concept_id != 0) AS num_concept_values,</span></span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a><span class="st">  COUNTIF(operator_concept_id IS NOT NULL) AS num_operators,</span></span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a><span class="st">  IF(src_id = "PPI/PM", "PPI", "EHR") AS measurement_source,</span></span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a><span class="st">  measurement_concept_id,</span></span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a><span class="st">  unit_concept_id</span></span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a><span class="st">FROM</span></span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a><span class="st">  `{CDR}.measurement`</span></span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a><span class="st">INNER JOIN</span></span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a><span class="st"> labs_of_interest USING(measurement_concept_id, unit_concept_id)</span></span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a><span class="st">LEFT JOIN</span></span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a><span class="st">  `{CDR}.measurement_ext` USING(measurement_id)</span></span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a><span class="st">GROUP BY</span></span>
+<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a><span class="st">  measurement_concept_id,</span></span>
+<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a><span class="st">  measurement_name,</span></span>
+<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a><span class="st">  measurement_source,</span></span>
+<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a><span class="st">  unit_concept_id,</span></span>
+<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a><span class="st">  unit_name</span></span>
+<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a><span class="st">ORDER BY</span></span>
+<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a><span class="st">  N DESC</span></span>
+<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a><span class="st">'</span>, <span class="at">collect =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 672 × 15
+   measurement       unit       N missing   min    max     avg  stddev quantiles
+   &lt;chr&gt;             &lt;chr&gt;  &lt;int&gt;   &lt;int&gt; &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;list&gt;   
+ 1 Hemoglobin [Mass… gram… 6.88e6    2045   0   1   e8 1.27e+3 3.39e+5 &lt;dbl [5]&gt;
+ 2 Hemoglobin A1c/H… perc… 1.21e6    1280   0   1   e7 4.63e+3 2.15e+5 &lt;dbl [5]&gt;
+ 3 Hemoglobin [Mass… No m… 5.93e5     220   0   1.37e2 1.18e+1 2.72e+0 &lt;dbl [5]&gt;
+ 4 Glucose mean val… mill… 4.59e5      75   0   1.00e3 1.38e+2 4.26e+1 &lt;dbl [5]&gt;
+ 5 Hemoglobin [Pres… No m… 3.86e5   30289 -50   1   e7 3.12e+5 1.74e+6 &lt;dbl [5]&gt;
+ 6 Hemoglobin A1c m… No m… 2.77e5  259605   0   2.24e2 6.81e+0 5.31e+0 &lt;dbl [5]&gt;
+ 7 Hemoglobin A1c/H… perc… 2.71e5      27   0   1   e7 1.26e+3 1.12e+5 &lt;dbl [5]&gt;
+ 8 Hemoglobin [Mass… gram… 2.70e5      21   2.1 2.49e1 1.17e+1 2.44e+0 &lt;dbl [5]&gt;
+ 9 Urinalysis, by d… No m… 2.07e5  182347   1   1   e0 1   e+0 0       &lt;dbl [5]&gt;
+10 Hemoglobin [Pres… mill… 1.72e5   63040   0   3   e0 9.24e-2 2.43e-1 &lt;dbl [5]&gt;
+# ℹ 662 more rows
+# ℹ 6 more variables: num_numeric_values &lt;int&gt;, num_concept_values &lt;int&gt;,
+#   num_operators &lt;int&gt;, measurement_source &lt;chr&gt;,
+#   measurement_concept_id &lt;int&gt;, unit_concept_id &lt;int&gt;</code></pre>
+</div>
+</div>
 
 
 </section>
@@ -987,13 +1185,13 @@ Text responses
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../man/aou_compute.html" class="pagination-link" aria-label="aou_compute">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">aou_compute</span>
+      <a href="../man/aou_session_info.html" class="pagination-link" aria-label="aou_session_info">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">aou_session_info</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../man/aou_concept_set.html" class="pagination-link" aria-label="aou_concept_set">
-        <span class="nav-page-text">aou_concept_set</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../man/aou_survey.html" class="pagination-link" aria-label="aou_survey">
+        <span class="nav-page-text">aou_survey</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

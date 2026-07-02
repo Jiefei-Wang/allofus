@@ -205,6 +205,8 @@ aou_sql <- function(query, collect = FALSE, debug = FALSE, ..., con = getOption(
     cdr <- CDR
   }
 
+
+
   if (debug) {
     cli::cli_h1("SQL QUERY")
     cli::cat_line(glue::glue(query))
@@ -220,6 +222,12 @@ aou_sql <- function(query, collect = FALSE, debug = FALSE, ..., con = getOption(
     (is.null(con) || inherits(con, "BigQueryConnection"))) {
     cli::cli_abort(c('This function only works on the Researcher Workbench. Please ensure you have a valid Google Cloud project set up by checking {.code Sys.getenv("GOOGLE_PROJECT")}.'),
       call = NULL
+    )
+  }
+
+  if (is.null(con)) {
+    cli::cli_abort(c('No connection detected. Please run `allofus::aou_connect()`.'),
+                   call = NULL
     )
   }
 

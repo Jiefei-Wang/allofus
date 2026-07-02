@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>aou_concept_codes – allofus</title>
+<title>Extracting All of Us survey and EHR data – allofus</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,8 +65,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../man/aou_concept_set.html" rel="next">
-<link href="../man/aou_compute.html" rel="prev">
+<link href="../vignettes/workspace.html" rel="next">
+<link href="../vignettes/atlas.html" rel="prev">
 <link href="../images/favicon.ico" rel="icon">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -283,7 +318,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../man/aou_atlas_cohort.html">Reference</a></li><li class="breadcrumb-item"><a href="../man/aou_concept_codes.html">aou_concept_codes</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../vignettes/atlas.html">Tutorials</a></li><li class="breadcrumb-item"><a href="../vignettes/data.html">Extracting All of Us survey and EHR data</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -307,13 +342,13 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
  <span class="menu-text">Tutorials</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../vignettes/atlas.html" class="sidebar-item-text sidebar-link">
@@ -322,7 +357,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../vignettes/data.html" class="sidebar-item-text sidebar-link">
+  <a href="../vignettes/data.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Extracting All of Us survey and EHR data</span></a>
   </div>
 </li>
@@ -359,13 +394,13 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
  <span class="menu-text">Reference</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../man/aou_atlas_cohort.html" class="sidebar-item-text sidebar-link">
@@ -398,7 +433,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../man/aou_concept_codes.html" class="sidebar-item-text sidebar-link active">
+  <a href="../man/aou_concept_codes.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">aou_concept_codes</span></a>
   </div>
 </li>
@@ -522,53 +557,240 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#concept-codes-and-survey-answers" id="toc-concept-codes-and-survey-answers" class="nav-link active" data-scroll-target="#concept-codes-and-survey-answers">Concept codes and survey answers</a>
-  <ul class="collapse">
-  <li><a href="#description" id="toc-description" class="nav-link" data-scroll-target="#description">Description</a></li>
-  <li><a href="#usage" id="toc-usage" class="nav-link" data-scroll-target="#usage">Usage</a></li>
-  <li><a href="#format" id="toc-format" class="nav-link" data-scroll-target="#format">Format</a></li>
-  </ul></li>
+  <li><a href="#survey-data" id="toc-survey-data" class="nav-link active" data-scroll-target="#survey-data">Survey data</a></li>
+  <li><a href="#ehr-data" id="toc-ehr-data" class="nav-link" data-scroll-target="#ehr-data">EHR data</a></li>
+  <li><a href="#health-history-survey-data" id="toc-health-history-survey-data" class="nav-link" data-scroll-target="#health-history-survey-data">Health history survey data</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../man/aou_atlas_cohort.html">Reference</a></li><li class="breadcrumb-item"><a href="../man/aou_concept_codes.html">aou_concept_codes</a></li></ol></nav></header>
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../vignettes/atlas.html">Tutorials</a></li><li class="breadcrumb-item"><a href="../vignettes/data.html">Extracting All of Us survey and EHR data</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Extracting All of Us survey and EHR data</h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
 
 
-<section id="concept-codes-and-survey-answers" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="concept-codes-and-survey-answers">Concept codes and survey answers</h2>
-<section id="description" class="level3">
-<h3 class="anchored" data-anchor-id="description">Description</h3>
-<p>A data frame containing concept codes (<code>code</code>) and text responses (<code>answer</code>) for the SDOH and COPE surveys.</p>
+</header>
+
+
+<p>The <a href="https://workbench.researchallofus.org/">Researcher Workbench</a>, available to registered All of Us researchers, provides tools for creating datasets using the All of Us database. Researchers first use the Workbench to create a cohort defined by values of survey variables (e.g., gender, race, age), observations from the electronic health record (e.g., diagnosis codes, lab values), data from wearable devices (e.g., fitbit), genomic data, and/or physical measurements. Data – either predefined or user-specified <a href="https://www.researchallofus.org/faq/what-is-a-concept-set/"><em>concept sets</em></a> – from each of the database tables can then be extracted for the cohort.</p>
+<!-- More information on this process is available [here](https://support.researchallofus.org/hc/en-us/articles/4556645124244-Using-the-Concept-Set-Selector-and-Dataset-Builder-tools-to-build-your-dataset). -->
+<p>The <code>allofus</code> package takes a programmatic approach to extracting data from the All of Us database. One advantage to this approach is that it is easier to document and share the process. This is especially important for reproducibility and transparency. To demonstrate, this vignette will walk through some examples of extracting data from the All of Us database.</p>
+<p>Suppose we want a cohort of the female All of Us participants who weren’t born in the US. For this cohort, we want to extract data on their history of diabetes, their A1C lab values, and their use of metformin after joining All of Us.</p>
+<section id="survey-data" class="level2">
+<h2 class="anchored" data-anchor-id="survey-data">Survey data</h2>
+<p>The first step is extracting gender and country of birth from the survey data. We can retrieve these variables either by concept code or concept id. Using the <code>allofus</code> <a href="https://roux-ohdsi.github.io/allofus/vignettes/web_only/searchable_codebook.html">searchable codebook</a>, we find that the concept id for gender is 1585838 and for birthplace is 1586135. We can use the <code>aou_survey</code> function to extract these variables from the All of Us database. This function takes a vector of concept ids or codes, and returns a dataset with one row per participant and one column per variable. The <code>question_output</code> argument allows you to specify the names of the column in the output dataset. Alternatively, you can specify “concept_id” or “concept_code” to name the variables according to one of those options.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(allofus)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>svy_vars <span class="ot">&lt;-</span> <span class="fu">aou_survey</span>(<span class="at">questions =</span> <span class="fu">c</span>(<span class="dv">1585838</span>, <span class="dv">1586135</span>), <span class="at">question_output =</span> <span class="fu">c</span>(<span class="st">"gender"</span>, <span class="st">"birthplace"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<pre><code>#&gt; Warning: No cohort provided.
+#&gt; → Pulling survey data for entire All of Us cohort.</code></pre>
+</div>
+<p>Note that the <code>aou_survey</code> function takes a cohort as an argument, with the only requirement that it contains a column called <code>person_id</code>. If no cohort is provided (e.g., if you are using survey data to define your cohort), the function will pull data for the entire All of Us cohort.</p>
+<p>Because <code>aou_survey()</code> defaults to <code>collect = FALSE</code>, the query isn’t fully executed yet, and we can continue to perform analyses, like cross-tabulating the two variables, on the database.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">count</span>(svy_vars, gender, birthplace)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<pre><code>#&gt; # Source:   SQL [?? x 3]
+#&gt; # Database: BigQueryConnection
+#&gt;    gender            birthplace       n
+#&gt;    &lt;chr&gt;             &lt;chr&gt;      &lt;int64&gt;
+#&gt;  1 Skip              Skip          4449
+#&gt;  2 NA                NA              97
+#&gt;  3 Woman             USA         205440
+#&gt;  4 Woman             Other        40348
+#&gt;  5 Man               Skip          1484
+#&gt;  6 Transgender       USA            504
+#&gt;  7 PreferNotToAnswer USA            475
+#&gt;  8 PreferNotToAnswer Other          112
+#&gt;  9 Man               USA         131698
+#&gt; 10 Man               Other        21059
+#&gt; # ℹ more rows</code></pre>
+<p>To create our cohort, we can subset the data to the participants matching our criteria.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>cohort <span class="ot">&lt;-</span> svy_vars <span class="sc">%&gt;%</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(gender <span class="sc">==</span> <span class="st">"Woman"</span>, birthplace <span class="sc">==</span> <span class="st">"Other"</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>cohort</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<pre><code>#&gt; # Source:   SQL [?? x 5]
+#&gt; # Database: BigQueryConnection
+#&gt;    person_id birthplace gender birthplace_date gender_date
+#&gt;      &lt;int64&gt; &lt;chr&gt;      &lt;chr&gt;  &lt;date&gt;          &lt;date&gt;     
+#&gt;  1   xxxxxxx Other      Woman  2019-08-xx      2019-08-xx 
+#&gt;  2   xxxxxxx Other      Woman  2018-06-xx      2018-06-xx 
+#&gt;  3   xxxxxxx Other      Woman  2019-05-xx      2019-05-xx 
+#&gt;  4   xxxxxxx Other      Woman  2019-02-xx      2019-02-xx 
+#&gt;  5   xxxxxxx Other      Woman  2018-06-xx      2018-06-xx 
+#&gt;  6   xxxxxxx Other      Woman  2019-03-xx      2019-03-xx 
+#&gt;  7   xxxxxxx Other      Woman  2019-04-xx      2019-04-xx 
+#&gt;  8   xxxxxxx Other      Woman  2019-04-xx      2019-04-xx 
+#&gt;  9   xxxxxxx Other      Woman  2019-05-xx      2019-05-xx 
+#&gt; 10   xxxxxxx Other      Woman  2020-09-xx      2020-09-xx 
+#&gt; # ℹ more rows</code></pre>
+<p>Note that the <code>aou_survey()</code> function automatically creates an additional column for every survey variable extracted, which contains the date the participant answered the question. These are automatically named by adding “_date” as a suffix to the column names.</p>
 </section>
-<section id="usage" class="level3">
-<h3 class="anchored" data-anchor-id="usage">Usage</h3>
-<pre><code class="language-R">aou_concept_codes
-</code></pre>
+<section id="ehr-data" class="level2">
+<h2 class="anchored" data-anchor-id="ehr-data">EHR data</h2>
+<p>Now that we have our cohort, we want to create a dataset with data from these participants’ medical records. We first want to find the concept ids of the data we want to extract. There are a number of tools we could use to do so:</p>
+<ol type="1">
+<li><p><a href="https://athena.ohdsi.org/">Athena</a>: a web-based tool for searching the entire OMOP vocabulary. The concept id for Type 2 diabetes mellitus can be found under ID. There are many results for this search, but we want only standard concepts when searching for EHR data.</p>
+<p><img src="images/diabetes-athena.png" class="img-fluid" width="600"></p></li>
+<li><p><a href="https://databrowser.researchallofus.org/">Data Browser</a>: a tool for exploring data in the All of Us database. Finding the concept id for Type 2 diabetes mellitus requires searching for that concept and then clicking “Sources”:</p>
+<p><img src="images/diabetes-browser.png" class="img-fluid" width="600"></p></li>
+<li><p><a href="https://workbench.researchallofus.org/">Researcher Workbench</a>: Creating a concept set can allow you to find a number of concept ids quickly. Add concepts to your concept set, and then review the concept set to see them all.</p>
+<p><img src="images/diabetes-workbench.png" class="img-fluid" width="600"></p></li>
+</ol>
+<p>Here are some concepts we may want to include. Keep in mind that this is an example, and a real analysis would have a more thorough search for relevant concepts.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 66%">
+<col style="width: 17%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Concept ID</th>
+<th>Concept Name</th>
+<th>Domain</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>201826</td>
+<td>Type 2 diabetes mellitus</td>
+<td>Condition</td>
+</tr>
+<tr class="even">
+<td>4193704</td>
+<td>Type 2 diabetes mellitus without complication</td>
+<td>Condition</td>
+</tr>
+<tr class="odd">
+<td>40164929</td>
+<td>metformin hydrochloride 500 MG Oral Tablet</td>
+<td>Drug</td>
+</tr>
+<tr class="even">
+<td>40164897</td>
+<td>metformin hydrochloride 1000 MG Oral Tablet</td>
+<td>Drug</td>
+</tr>
+<tr class="odd">
+<td>3004410</td>
+<td>Hemoglobin A1c/Hemoglobin.total in Blood</td>
+<td>Measurement</td>
+</tr>
+<tr class="even">
+<td>3005673</td>
+<td>Hemoglobin A1c/Hemoglobin.total in Blood by HPLC</td>
+<td>Measurement</td>
+</tr>
+</tbody>
+</table>
+<p>First, we’ll extract data on diabetes diagnoses. We can use the <code>aou_concept_set</code> function to extract data from the All of Us database. This function takes a cohort, a vector of concepts, and a domain or set of domains. You can actually extract data from multiple domains at once – the default is to search all domains. However, it is helpful to specify the domain(s) when you can, for speed and clarity. The <code>output =</code> argument specifies the type of data to extract. Here, we’ll extract an indicator variable for whether the participant has a diabetes diagnosis at any point in their medical record. We’ll call that variable “t2dm”.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>t2dm <span class="ot">&lt;-</span> <span class="fu">aou_concept_set</span>(cohort,</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">concepts =</span> <span class="fu">c</span>(<span class="dv">201826</span>, <span class="dv">4193704</span>),</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">domains =</span> <span class="st">"condition"</span>, <span class="at">output =</span> <span class="st">"indicator"</span>,</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">concept_set_name =</span> <span class="st">"t2dm"</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>We can also extract data within a certain time window. For example, if we only want to extract metformin use after joining All of Us, we can specify a start date as the date the participant answered the gender question (on the Basics survey). We’ll count how many times the participant was prescribed metformin after that time point.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>metformin <span class="ot">&lt;-</span> <span class="fu">aou_concept_set</span>(cohort,</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">concepts =</span> <span class="fu">c</span>(<span class="dv">40164929</span>, <span class="dv">40164897</span>),</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">domains =</span> <span class="st">"drug"</span>, <span class="at">output =</span> <span class="st">"count"</span>,</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">start_date =</span> <span class="st">"gender_date"</span>, <span class="at">concept_set_name =</span> <span class="st">"metformin"</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>For a concept set in the measurement domain, we likely want to set <code>output = "all"</code> because we are interested in the values of the measurements, not whether they had any or how many they had.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>a1c <span class="ot">&lt;-</span> <span class="fu">aou_concept_set</span>(cohort,</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">concepts =</span> <span class="fu">c</span>(<span class="dv">3004410</span>, <span class="dv">3005673</span>),</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">domains =</span> <span class="st">"measurement"</span>, <span class="at">output =</span> <span class="st">"all"</span>, <span class="at">start_date =</span> <span class="st">"gender_date"</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>The output to this is a dataset with one row per measurement. We can see that the second participant in the output has had 4 A1C measurements since joining All of Us, while the fifth had 1 and the rest had none.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>a1c</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<pre><code>#&gt; # Source:   SQL [?? x 9]
+#&gt; # Database: BigQueryConnection
+#&gt;    person_id concept_date concept_id concept_name concept_domain value_as_number
+#&gt;      &lt;int64&gt; &lt;date&gt;          &lt;int64&gt; &lt;chr&gt;        &lt;chr&gt;                    &lt;dbl&gt;
+#&gt;  1   xxxxxx1 NA                   NA NA           NA                        NA  
+#&gt;  2   xxxxxx2 2022-03-xx      3004410 Hemoglobin … Measurement                5.6
+#&gt;  3   xxxxxx2 2021-07-xx      3004410 Hemoglobin … Measurement                5.6
+#&gt;  4   xxxxxx2 2021-05-xx      3004410 Hemoglobin … Measurement                5.5
+#&gt;  5   xxxxxx2 2020-10-xx      3004410 Hemoglobin … Measurement                6  
+#&gt;  6   xxxxxx3 NA                   NA NA           NA                        NA  
+#&gt;  7   xxxxxx4 NA                   NA NA           NA                        NA  
+#&gt;  8   xxxxxx5 2019-04-xx      3005673 Hemoglobin … Measurement                5.9
+#&gt;  9   xxxxxx6 NA                   NA NA           NA                        NA  
+#&gt; 10   xxxxxx7 NA                   NA NA           NA                        NA  
+#&gt; # ℹ more rows
+#&gt; # ℹ 3 more variables: value_as_concept_id &lt;int64&gt;, value_source_value &lt;chr&gt;,
+#&gt; #   gender_date &lt;date&gt;</code></pre>
 </section>
-<section id="format" class="level3">
-<h3 class="anchored" data-anchor-id="format">Format</h3>
-<p>aou_concept_codes</p>
-<dl>
-<dt>
-code
-</dt>
-<dd>
-response from the observation table
-</dd>
-<dt>
-answer
-</dt>
-<dd>
-Text responses
-</dd>
-</dl>
+<section id="health-history-survey-data" class="level2">
+<h2 class="anchored" data-anchor-id="health-history-survey-data">Health history survey data</h2>
+<p>Suppose we want to compare the EHR data to self-reported survey data on diabetes diagnoses. Returning again to the <code>aou_survey()</code> function, we need to first find the concept id for the question asking about diabetes diagnoses. Wuestions from the health history surveys are more complex than others like gender and birthplace: there are branching questions and complex skip patterns for each question, which were also asked about family members, and groups of diagnoses were asked about together. The searchable health history codebook is a useful tool for finding the concept id for these questions. We can search for “diabetes” and find the concept id for the question asking about type 2 diabetes diagnoses for the respondent: 43529932. We can also use the <a href="https://databrowser.researchallofus.org/">Data Browser</a> to find the same concept id: <img src="images/diabetes-self.png" class="img-fluid" width="600"></p>
+<p>Data from the health history surveys is returned as “Yes”, “No”, or “Skip”. An observation will have a value of “No” if the participant answered that someone in their family had the condition, but did not self-identify as having the condition, or if they responded that no one in their family had the condition. If they skipped either part of the question, the value will be “Skip”.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>t2dm_self <span class="ot">&lt;-</span> <span class="fu">aou_survey</span>(cohort, <span class="at">questions =</span> <span class="dv">43529932</span>, <span class="at">question_output =</span> <span class="st">"t2dm_survey"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Next, we want to combine these datasets into one. We can do this using the <code>aou_join</code> function. This function takes a list of datasets and joins them together using the participant id. The <code>aou_join</code> function also allows you to specify the type of join (inner, left, right, or full). Here we’ll perform repeated left joins into the cohort using the <code>reduce()</code> function from the <code>purrr</code> package.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>combined_data <span class="ot">&lt;-</span> <span class="fu">reduce</span>(<span class="fu">list</span>(cohort, t2dm, metformin, a1c, t2dm_self),</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  aou_join,</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"left"</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Our combined dataset has columns for the diabetes diagnosis indicator from the EHR data, the number of metformin prescriptions, the self-reported diabetes diagnosis from the health history survey and the date that survey was completed, as well as complete data on the A1C measurements. Participants with multiple measurements therefore have multiple rows in the dataset. We may want to do some additional analyses before bringing the table off the database and into R. For example, we may want to summarize the A1C measurements as the highest value for each participant. We can continue to manipulate the data using <code>dplyr</code> functions (see <code>vignette("sql", package = "allofus")</code>).</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>final_data <span class="ot">&lt;-</span> combined_data <span class="sc">%&gt;%</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(person_id, birthplace, t2dm, metformin, t2dm_survey) <span class="sc">%&gt;%</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">max_a1c =</span> <span class="fu">max</span>(value_as_number, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">.groups =</span> <span class="st">"drop"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>This final query may take a few seconds to run – it is the accumulation of all the queries we’ve run so far (use <code>show_query()</code> to see the SQL query that will be run). For that reason, it is often helpful to print the result of each individual query to make sure it is what you expect before moving on to the next step.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>final_data</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<pre><code>#&gt; # Source:   SQL [?? x 5]
+#&gt; # Database: BigQueryConnection
+#&gt;    person_id  t2dm metformin t2dm_survey max_a1c
+#&gt;      &lt;int64&gt; &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt;
+#&gt;  1   xxxxxxx     0         0 NA             NA  
+#&gt;  2   xxxxxxx     0         0 DontKnow       NA  
+#&gt;  3   xxxxxxx     0         0 NA             NA  
+#&gt;  4   xxxxxxx     0         0 No             NA  
+#&gt;  5   xxxxxxx     0         0 NA             NA  
+#&gt;  6   xxxxxxx     0         0 NA             NA  
+#&gt;  7   xxxxxxx     0         0 NA             NA  
+#&gt;  8   xxxxxxx     0         0 No             NA  
+#&gt;  9   xxxxxxx     0         0 NA             NA  
+#&gt; 10   xxxxxxx     0         0 No              5.4
+#&gt; # ℹ more rows</code></pre>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -987,13 +1209,13 @@ Text responses
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../man/aou_compute.html" class="pagination-link" aria-label="aou_compute">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">aou_compute</span>
+      <a href="../vignettes/atlas.html" class="pagination-link" aria-label="Using ATLAS to create a cohort">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Using ATLAS to create a cohort</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../man/aou_concept_set.html" class="pagination-link" aria-label="aou_concept_set">
-        <span class="nav-page-text">aou_concept_set</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../vignettes/workspace.html" class="pagination-link" aria-label="Managing files on the workbench">
+        <span class="nav-page-text">Managing files on the workbench</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

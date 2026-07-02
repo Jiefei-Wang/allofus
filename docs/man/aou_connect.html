@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>aou_concept_codes – allofus</title>
+<title>aou_connect – allofus</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,8 +65,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../man/aou_concept_set.html" rel="next">
-<link href="../man/aou_compute.html" rel="prev">
+<link href="../man/aou_create_bucket.html" rel="next">
+<link href="../man/aou_concept_set.html" rel="prev">
 <link href="../images/favicon.ico" rel="icon">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -283,7 +318,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../man/aou_atlas_cohort.html">Reference</a></li><li class="breadcrumb-item"><a href="../man/aou_concept_codes.html">aou_concept_codes</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../man/aou_atlas_cohort.html">Reference</a></li><li class="breadcrumb-item"><a href="../man/aou_connect.html">aou_connect</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -398,7 +433,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../man/aou_concept_codes.html" class="sidebar-item-text sidebar-link active">
+  <a href="../man/aou_concept_codes.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">aou_concept_codes</span></a>
   </div>
 </li>
@@ -410,7 +445,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../man/aou_connect.html" class="sidebar-item-text sidebar-link">
+  <a href="../man/aou_connect.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">aou_connect</span></a>
   </div>
 </li>
@@ -522,50 +557,169 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#concept-codes-and-survey-answers" id="toc-concept-codes-and-survey-answers" class="nav-link active" data-scroll-target="#concept-codes-and-survey-answers">Concept codes and survey answers</a>
+  <li><a href="#create-a-connection-to-the-database-in-all-of-us" id="toc-create-a-connection-to-the-database-in-all-of-us" class="nav-link active" data-scroll-target="#create-a-connection-to-the-database-in-all-of-us">Create a connection to the database in All of Us</a>
   <ul class="collapse">
   <li><a href="#description" id="toc-description" class="nav-link" data-scroll-target="#description">Description</a></li>
   <li><a href="#usage" id="toc-usage" class="nav-link" data-scroll-target="#usage">Usage</a></li>
-  <li><a href="#format" id="toc-format" class="nav-link" data-scroll-target="#format">Format</a></li>
+  <li><a href="#arguments" id="toc-arguments" class="nav-link" data-scroll-target="#arguments">Arguments</a></li>
+  <li><a href="#details" id="toc-details" class="nav-link" data-scroll-target="#details">Details</a></li>
+  <li><a href="#value" id="toc-value" class="nav-link" data-scroll-target="#value">Value</a></li>
+  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples">Examples</a></li>
   </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../man/aou_atlas_cohort.html">Reference</a></li><li class="breadcrumb-item"><a href="../man/aou_concept_codes.html">aou_concept_codes</a></li></ol></nav></header>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../man/aou_atlas_cohort.html">Reference</a></li><li class="breadcrumb-item"><a href="../man/aou_connect.html">aou_connect</a></li></ol></nav></header>
 
 
 
 
 
-<section id="concept-codes-and-survey-answers" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="concept-codes-and-survey-answers">Concept codes and survey answers</h2>
+<section id="create-a-connection-to-the-database-in-all-of-us" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="create-a-connection-to-the-database-in-all-of-us">Create a connection to the database in All of Us</h2>
 <section id="description" class="level3">
 <h3 class="anchored" data-anchor-id="description">Description</h3>
-<p>A data frame containing concept codes (<code>code</code>) and text responses (<code>answer</code>) for the SDOH and COPE surveys.</p>
+<p>Connects to the All of Us database and returns a BigQueryConnection object. You can reference this object to query the database using R and or SQL code. A message is printed with the connection status (successful or not).</p>
 </section>
 <section id="usage" class="level3">
 <h3 class="anchored" data-anchor-id="usage">Usage</h3>
-<pre><code class="language-R">aou_concept_codes
+<pre><code class="language-R">aou_connect(CDR = getOption("aou.default.cdr"), ...)
 </code></pre>
 </section>
-<section id="format" class="level3">
-<h3 class="anchored" data-anchor-id="format">Format</h3>
-<p>aou_concept_codes</p>
-<dl>
-<dt>
-code
-</dt>
-<dd>
-response from the observation table
-</dd>
-<dt>
-answer
-</dt>
-<dd>
-Text responses
-</dd>
-</dl>
+<section id="arguments" class="level3">
+<h3 class="anchored" data-anchor-id="arguments">Arguments</h3>
+<table role="presentation">
+<tbody><tr>
+<td style="white-space: collapse; font-family: monospace; vertical-align: top">
+<code id="CDR">CDR</code>
+</td>
+<td>
+The name of the "curated data repository" to connect to. Defaults to <code>getOption(“aou.default.cdr”)</code>, which is <code>Sys.getenv(‘WORKSPACE_CDR’)</code> if not specified otherwise (i.e., the "mainline" CDR). On the controlled tier, specify the "base" CDR with <code>CDR = paste0(Sys.getenv(‘WORKSPACE_CDR’), “_base”)</code>.
+</td>
+</tr>
+<tr>
+<td style="white-space: collapse; font-family: monospace; vertical-align: top">
+<code id="...">…</code>
+</td>
+<td>
+Further arguments passed along to <code>DBI::dbConnect()</code>.
+</td>
+</tr>
+</tbody></table>
+</section>
+<section id="details" class="level3">
+<h3 class="anchored" data-anchor-id="details">Details</h3>
+<p>You can reference this object to connect to the All of Us database and run SQL code using, e.g., <code>dbplyr</code> or <code>DBI</code>. A message is printed with the connection status (successful or not). For RStudio users, setting quiet = TRUE will silence most (but not all) billing messages.</p>
+</section>
+<section id="value" class="level3">
+<h3 class="anchored" data-anchor-id="value">Value</h3>
+<p>A <code>BigQueryConnection</code> object. This object is also saved as an option (<code>getOption(“aou.default.con”)</code>).</p>
+</section>
+<section id="examples" class="level3">
+<h3 class="anchored" data-anchor-id="examples">Examples</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"allofus"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>con <span class="ot">&lt;-</span> <span class="fu">aou_connect</span>()</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># reference the observation table in the database</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">tbl</span>(con, <span class="st">"observation"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># Source:   table&lt;`observation`&gt; [?? x 21]
+# Database: BigQueryConnection
+   observation_id person_id observation_concept_id observation_date
+          &lt;int64&gt;   &lt;int64&gt;                &lt;int64&gt; &lt;date&gt;          
+ 1           7e16   9929706                1704135 2023-07-19      
+ 2           7e16   3128683                1704135 2023-08-19      
+ 3           7e16   8984266                1704135 2024-02-22      
+ 4           7e16   3757069                1704135 2023-08-29      
+ 5           7e16   3350503                1704135 2023-08-19      
+ 6           7e16   2061569                1704135 2023-07-21      
+ 7           7e16   7561169                1704135 2023-07-18      
+ 8           7e16   6258330                1704135 2024-01-30      
+ 9           7e16   1869655                1704135 2023-07-20      
+10           7e16   1550351                1704135 2023-07-18      
+# ℹ more rows
+# ℹ 17 more variables: observation_datetime &lt;dttm&gt;,
+#   observation_type_concept_id &lt;int64&gt;, value_as_number &lt;dbl&gt;,
+#   value_as_string &lt;chr&gt;, value_as_concept_id &lt;int64&gt;,
+#   qualifier_concept_id &lt;int64&gt;, unit_concept_id &lt;int64&gt;, provider_id &lt;int64&gt;,
+#   visit_occurrence_id &lt;int64&gt;, visit_detail_id &lt;int64&gt;,
+#   observation_source_value &lt;chr&gt;, observation_source_concept_id &lt;int64&gt;, …</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># print a list of the tables in the database</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>DBI<span class="sc">::</span><span class="fu">dbListTables</span>(con)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  [1] "_cdr_metadata"                   "activity_summary"               
+  [3] "aou_death"                       "attribute_definition"           
+  [5] "attribute_definition_ext"        "care_site"                      
+  [7] "care_site_ext"                   "cb_criteria"                    
+  [9] "cb_criteria_ancestor"            "cb_criteria_attribute"          
+ [11] "cb_criteria_menu"                "cb_criteria_relationship"       
+ [13] "cb_review_all_events"            "cb_review_survey"               
+ [15] "cb_search_all_events"            "cb_search_person"               
+ [17] "cb_survey_attribute"             "cb_survey_version"              
+ [19] "cb_variant_to_person"            "cdm_source"                     
+ [21] "cohort"                          "cohort_attribute"               
+ [23] "cohort_definition"               "cohort_definition_ext"          
+ [25] "concept"                         "concept_ancestor"               
+ [27] "concept_class"                   "concept_relationship"           
+ [29] "concept_synonym"                 "condition_era"                  
+ [31] "condition_era_ext"               "condition_occurrence"           
+ [33] "condition_occurrence_ext"        "cost"                           
+ [35] "cost_ext"                        "death"                          
+ [37] "delaydiscounting"                "device"                         
+ [39] "device_cost"                     "device_cost_ext"                
+ [41] "device_exposure"                 "device_exposure_ext"            
+ [43] "domain"                          "dose_era"                       
+ [45] "dose_era_ext"                    "drug_cost"                      
+ [47] "drug_cost_ext"                   "drug_era"                       
+ [49] "drug_era_ext"                    "drug_exposure"                  
+ [51] "drug_exposure_ext"               "drug_strength"                  
+ [53] "ds_activity_summary"             "ds_condition_occurrence"        
+ [55] "ds_data_dictionary"              "ds_delaydiscounting_metadata"   
+ [57] "ds_delaydiscounting_outcomes"    "ds_delaydiscounting_trial_data" 
+ [59] "ds_device"                       "ds_drug_exposure"               
+ [61] "ds_emorecog_metadata"            "ds_emorecog_outcomes"           
+ [63] "ds_emorecog_trial_data"          "ds_fitbit_device"               
+ [65] "ds_flanker_metadata"             "ds_flanker_outcomes"            
+ [67] "ds_flanker_trial_data"           "ds_gradcpt_metadata"            
+ [69] "ds_gradcpt_outcomes"             "ds_gradcpt_trial_data"          
+ [71] "ds_heart_rate_intraday"          "ds_heart_rate_summary"          
+ [73] "ds_linking"                      "ds_measurement"                 
+ [75] "ds_observation"                  "ds_person"                      
+ [77] "ds_procedure_occurrence"         "ds_sleep_daily_summary"         
+ [79] "ds_sleep_daily_summary_30dayavg" "ds_sleep_daily_summary_counts"  
+ [81] "ds_sleep_level"                  "ds_sleep_level_short"           
+ [83] "ds_steps_intraday"               "ds_survey"                      
+ [85] "ds_visit_occurrence"             "ds_zip_code_socioeconomic"      
+ [87] "emorecog"                        "fact_relationship"              
+ [89] "flanker"                         "gradcpt"                        
+ [91] "heart_rate_intraday"             "heart_rate_summary"             
+ [93] "location"                        "location_ext"                   
+ [95] "measurement"                     "measurement_ext"                
+ [97] "metadata"                        "observation"                    
+ [99] "observation_ext"                 "observation_period"             
+[101] "observation_period_ext"          "payer_plan_period"              
+[103] "payer_plan_period_ext"           "person"                         
+[105] "person_ext"                      "procedure_cost"                 
+[107] "procedure_cost_ext"              "procedure_occurrence"           
+[109] "procedure_occurrence_ext"        "provider"                       
+[111] "provider_ext"                    "relationship"                   
+[113] "sleep_daily_summary"             "sleep_daily_summary_30dayavg"   
+[115] "sleep_daily_summary_counts"      "sleep_daily_summary_ext"        
+[117] "sleep_level"                     "sleep_level_short"              
+[119] "source_to_concept_map"           "specimen"                       
+[121] "specimen_ext"                    "steps_intraday"                 
+[123] "survey_conduct"                  "survey_conduct_ext"             
+[125] "visit_cost"                      "visit_cost_ext"                 
+[127] "visit_detail"                    "visit_detail_ext"               
+[129] "visit_occurrence"                "visit_occurrence_ext"           
+[131] "vocabulary"                      "wear_study"                     
+[133] "zip3_ses_map"                   </code></pre>
+</div>
+</div>
 
 
 </section>
@@ -987,13 +1141,13 @@ Text responses
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../man/aou_compute.html" class="pagination-link" aria-label="aou_compute">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">aou_compute</span>
+      <a href="../man/aou_concept_set.html" class="pagination-link" aria-label="aou_concept_set">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">aou_concept_set</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../man/aou_concept_set.html" class="pagination-link" aria-label="aou_concept_set">
-        <span class="nav-page-text">aou_concept_set</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../man/aou_create_bucket.html" class="pagination-link" aria-label="aou_create_bucket">
+        <span class="nav-page-text">aou_create_bucket</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

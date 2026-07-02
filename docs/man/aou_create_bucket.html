@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>aou_concept_codes – allofus</title>
+<title>aou_create_bucket – allofus</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,8 +65,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../man/aou_concept_set.html" rel="next">
-<link href="../man/aou_compute.html" rel="prev">
+<link href="../man/aou_create_temp_table.html" rel="next">
+<link href="../man/aou_connect.html" rel="prev">
 <link href="../images/favicon.ico" rel="icon">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -283,7 +318,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../man/aou_atlas_cohort.html">Reference</a></li><li class="breadcrumb-item"><a href="../man/aou_concept_codes.html">aou_concept_codes</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../man/aou_atlas_cohort.html">Reference</a></li><li class="breadcrumb-item"><a href="../man/aou_create_bucket.html">aou_create_bucket</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -398,7 +433,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../man/aou_concept_codes.html" class="sidebar-item-text sidebar-link active">
+  <a href="../man/aou_concept_codes.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">aou_concept_codes</span></a>
   </div>
 </li>
@@ -416,7 +451,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../man/aou_create_bucket.html" class="sidebar-item-text sidebar-link">
+  <a href="../man/aou_create_bucket.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">aou_create_bucket</span></a>
   </div>
 </li>
@@ -522,50 +557,87 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#concept-codes-and-survey-answers" id="toc-concept-codes-and-survey-answers" class="nav-link active" data-scroll-target="#concept-codes-and-survey-answers">Concept codes and survey answers</a>
+  <li><a href="#create-a-cloud-storage-bucket-for-the-workspace" id="toc-create-a-cloud-storage-bucket-for-the-workspace" class="nav-link active" data-scroll-target="#create-a-cloud-storage-bucket-for-the-workspace">Create a Cloud Storage bucket for the workspace</a>
   <ul class="collapse">
   <li><a href="#description" id="toc-description" class="nav-link" data-scroll-target="#description">Description</a></li>
   <li><a href="#usage" id="toc-usage" class="nav-link" data-scroll-target="#usage">Usage</a></li>
-  <li><a href="#format" id="toc-format" class="nav-link" data-scroll-target="#format">Format</a></li>
+  <li><a href="#arguments" id="toc-arguments" class="nav-link" data-scroll-target="#arguments">Arguments</a></li>
+  <li><a href="#details" id="toc-details" class="nav-link" data-scroll-target="#details">Details</a></li>
+  <li><a href="#value" id="toc-value" class="nav-link" data-scroll-target="#value">Value</a></li>
+  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples">Examples</a></li>
   </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../man/aou_atlas_cohort.html">Reference</a></li><li class="breadcrumb-item"><a href="../man/aou_concept_codes.html">aou_concept_codes</a></li></ol></nav></header>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../man/aou_atlas_cohort.html">Reference</a></li><li class="breadcrumb-item"><a href="../man/aou_create_bucket.html">aou_create_bucket</a></li></ol></nav></header>
 
 
 
 
 
-<section id="concept-codes-and-survey-answers" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="concept-codes-and-survey-answers">Concept codes and survey answers</h2>
+<section id="create-a-cloud-storage-bucket-for-the-workspace" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="create-a-cloud-storage-bucket-for-the-workspace">Create a Cloud Storage bucket for the workspace</h2>
 <section id="description" class="level3">
 <h3 class="anchored" data-anchor-id="description">Description</h3>
-<p>A data frame containing concept codes (<code>code</code>) and text responses (<code>answer</code>) for the SDOH and COPE surveys.</p>
+<p>Verily Workbench workspaces (workbench 2.0) don’t automatically provision a workspace bucket the way older ("workbench 1.0") All of Us workspaces did. This creates one via the <code>wb</code> CLI (or resolves it if a bucket with the same name already exists) and sets <code>WORKSPACE_BUCKET</code> (or <code>WORKSPACE_TEMP_BUCKET</code> if <code>temporary = TRUE</code>) for the current R session, so functions like <code>aou_ls_bucket()</code> work without further setup.</p>
 </section>
 <section id="usage" class="level3">
 <h3 class="anchored" data-anchor-id="usage">Usage</h3>
-<pre><code class="language-R">aou_concept_codes
+<pre><code class="language-R">aou_create_bucket(
+  temporary = FALSE,
+  name = if (temporary) "temporary-workspace-bucket" else "workspace-bucket",
+  auto_delete = 14
+)
 </code></pre>
 </section>
-<section id="format" class="level3">
-<h3 class="anchored" data-anchor-id="format">Format</h3>
-<p>aou_concept_codes</p>
-<dl>
-<dt>
-code
-</dt>
-<dd>
-response from the observation table
-</dd>
-<dt>
-answer
-</dt>
-<dd>
-Text responses
-</dd>
-</dl>
+<section id="arguments" class="level3">
+<h3 class="anchored" data-anchor-id="arguments">Arguments</h3>
+<table role="presentation">
+<tbody><tr>
+<td style="white-space: collapse; font-family: monospace; vertical-align: top">
+<code id="temporary">temporary</code>
+</td>
+<td>
+If <code>TRUE</code>, creates a temporary bucket whose contents are automatically deleted after <code>auto_delete</code> days, instead of the persistent workspace bucket. Useful for intermediate files you don’t need to keep.
+</td>
+</tr>
+<tr>
+<td style="white-space: collapse; font-family: monospace; vertical-align: top">
+<code id="name">name</code>
+</td>
+<td>
+Resource name for the bucket within the workspace. Defaults to <code>“workspace-bucket”</code>, or <code>“temporary-workspace-bucket”</code> if <code>temporary = TRUE</code>.
+</td>
+</tr>
+<tr>
+<td style="white-space: collapse; font-family: monospace; vertical-align: top">
+<code id="auto_delete">auto_delete</code>
+</td>
+<td>
+Number of days after which objects in a temporary bucket are automatically deleted. Only used if <code>temporary = TRUE</code>.
+</td>
+</tr>
+</tbody></table>
+</section>
+<section id="details" class="level3">
+<h3 class="anchored" data-anchor-id="details">Details</h3>
+<p>The resolved bucket URL is cached to <code style="white-space: pre;">~/.aou-env</code> (alongside <code>WORKSPACE_CDR</code> and <code>GOOGLE_PROJECT</code>, which are cached there the same way when the package loads). This means you only need to run <code>aou_create_bucket()</code> once per workspace, not once per session: on subsequent loads, <code>library(allofus)</code> reads the cached values from <code style="white-space: pre;">~/.aou-env</code> directly instead of recreating anything or re-querying the <code>wb</code> CLI.</p>
+<p>To see what’s currently cached (e.g., to check which buckets you’ve already created in this workspace), read the file directly: <code>cat(readLines(“~/.aou-env”))</code>. Each line is a plain <code style="white-space: pre;">export VARIABLE=“value”</code> entry. If a cached value ever goes stale (for example, a bucket was deleted outside of R), delete the corresponding line, or delete the file entirely to force everything to be re-resolved on the next <code>library(allofus)</code> call.</p>
+</section>
+<section id="value" class="level3">
+<h3 class="anchored" data-anchor-id="value">Value</h3>
+<p>The bucket’s <code style="white-space: pre;">gs://</code> URL (invisibly).</p>
+</section>
+<section id="examples" class="level3">
+<h3 class="anchored" data-anchor-id="examples">Examples</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"allofus"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">aou_create_bucket</span>()</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">aou_create_bucket</span>(<span class="at">temporary =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 
 
 </section>
@@ -987,13 +1059,13 @@ Text responses
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../man/aou_compute.html" class="pagination-link" aria-label="aou_compute">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">aou_compute</span>
+      <a href="../man/aou_connect.html" class="pagination-link" aria-label="aou_connect">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">aou_connect</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../man/aou_concept_set.html" class="pagination-link" aria-label="aou_concept_set">
-        <span class="nav-page-text">aou_concept_set</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../man/aou_create_temp_table.html" class="pagination-link" aria-label="aou_create_temp_table">
+        <span class="nav-page-text">aou_create_temp_table</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

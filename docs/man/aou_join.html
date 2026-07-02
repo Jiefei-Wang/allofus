@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>aou_concept_codes – allofus</title>
+<title>aou_join – allofus</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,8 +65,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../man/aou_concept_set.html" rel="next">
-<link href="../man/aou_compute.html" rel="prev">
+<link href="../man/aou_ls_bucket.html" rel="next">
+<link href="../man/aou_health_history.html" rel="prev">
 <link href="../images/favicon.ico" rel="icon">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -283,7 +318,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../man/aou_atlas_cohort.html">Reference</a></li><li class="breadcrumb-item"><a href="../man/aou_concept_codes.html">aou_concept_codes</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../man/aou_atlas_cohort.html">Reference</a></li><li class="breadcrumb-item"><a href="../man/aou_join.html">aou_join</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -398,7 +433,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../man/aou_concept_codes.html" class="sidebar-item-text sidebar-link active">
+  <a href="../man/aou_concept_codes.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">aou_concept_codes</span></a>
   </div>
 </li>
@@ -434,7 +469,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../man/aou_join.html" class="sidebar-item-text sidebar-link">
+  <a href="../man/aou_join.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">aou_join</span></a>
   </div>
 </li>
@@ -522,50 +557,167 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#concept-codes-and-survey-answers" id="toc-concept-codes-and-survey-answers" class="nav-link active" data-scroll-target="#concept-codes-and-survey-answers">Concept codes and survey answers</a>
+  <li><a href="#join-current-query-to-another-table" id="toc-join-current-query-to-another-table" class="nav-link active" data-scroll-target="#join-current-query-to-another-table">Join current query to another table</a>
   <ul class="collapse">
   <li><a href="#description" id="toc-description" class="nav-link" data-scroll-target="#description">Description</a></li>
   <li><a href="#usage" id="toc-usage" class="nav-link" data-scroll-target="#usage">Usage</a></li>
-  <li><a href="#format" id="toc-format" class="nav-link" data-scroll-target="#format">Format</a></li>
+  <li><a href="#arguments" id="toc-arguments" class="nav-link" data-scroll-target="#arguments">Arguments</a></li>
+  <li><a href="#details" id="toc-details" class="nav-link" data-scroll-target="#details">Details</a></li>
+  <li><a href="#value" id="toc-value" class="nav-link" data-scroll-target="#value">Value</a></li>
+  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples">Examples</a></li>
   </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../man/aou_atlas_cohort.html">Reference</a></li><li class="breadcrumb-item"><a href="../man/aou_concept_codes.html">aou_concept_codes</a></li></ol></nav></header>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../man/aou_atlas_cohort.html">Reference</a></li><li class="breadcrumb-item"><a href="../man/aou_join.html">aou_join</a></li></ol></nav></header>
 
 
 
 
 
-<section id="concept-codes-and-survey-answers" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="concept-codes-and-survey-answers">Concept codes and survey answers</h2>
+<section id="join-current-query-to-another-table" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="join-current-query-to-another-table">Join current query to another table</h2>
 <section id="description" class="level3">
 <h3 class="anchored" data-anchor-id="description">Description</h3>
-<p>A data frame containing concept codes (<code>code</code>) and text responses (<code>answer</code>) for the SDOH and COPE surveys.</p>
+<p>Joins two tables in the All of Us database. A less verbose wrapper for the dplyr::*_join() functions with some added safeguards.</p>
 </section>
 <section id="usage" class="level3">
 <h3 class="anchored" data-anchor-id="usage">Usage</h3>
-<pre><code class="language-R">aou_concept_codes
+<pre><code class="language-R">aou_join(
+  data,
+  table,
+  type,
+  by = NULL,
+  suffix = c("_x", "_y"),
+  x_as = NULL,
+  y_as = NULL,
+  ...,
+  con = getOption("aou.default.con")
+)
 </code></pre>
 </section>
-<section id="format" class="level3">
-<h3 class="anchored" data-anchor-id="format">Format</h3>
-<p>aou_concept_codes</p>
-<dl>
-<dt>
-code
-</dt>
-<dd>
-response from the observation table
-</dd>
-<dt>
-answer
-</dt>
-<dd>
-Text responses
-</dd>
-</dl>
+<section id="arguments" class="level3">
+<h3 class="anchored" data-anchor-id="arguments">Arguments</h3>
+<table role="presentation">
+<tbody><tr>
+<td style="white-space: collapse; font-family: monospace; vertical-align: top">
+<code id="data">data</code>
+</td>
+<td>
+unexecuted SQL query from dbplyr/dplyr.
+</td>
+</tr>
+<tr>
+<td style="white-space: collapse; font-family: monospace; vertical-align: top">
+<code id="table">table</code>
+</td>
+<td>
+the omop table (or other remote table in your schema) you wish to join, as a character string, or a tbl object.
+</td>
+</tr>
+<tr>
+<td style="white-space: collapse; font-family: monospace; vertical-align: top">
+<code id="type">type</code>
+</td>
+<td>
+the type of join; types available in dplyr: "left", "right", "inner", "anti", "full", etc.
+</td>
+</tr>
+<tr>
+<td style="white-space: collapse; font-family: monospace; vertical-align: top">
+<code id="by">by</code>
+</td>
+<td>
+columns to join on
+</td>
+</tr>
+<tr>
+<td style="white-space: collapse; font-family: monospace; vertical-align: top">
+<code id="suffix">suffix</code>
+</td>
+<td>
+suffix preferences to add when joining data with the same column names not specified in the by argument.
+</td>
+</tr>
+<tr>
+<td style="white-space: collapse; font-family: monospace; vertical-align: top">
+<code id="x_as">x_as</code>
+</td>
+<td>
+optional; a string for the name of the left table
+</td>
+</tr>
+<tr>
+<td style="white-space: collapse; font-family: monospace; vertical-align: top">
+<code id="y_as">y_as</code>
+</td>
+<td>
+optional; a string for the name of the right table
+</td>
+</tr>
+<tr>
+<td style="white-space: collapse; font-family: monospace; vertical-align: top">
+<code id="...">…</code>
+</td>
+<td>
+Additional arguments passed on to the join function
+</td>
+</tr>
+<tr>
+<td style="white-space: collapse; font-family: monospace; vertical-align: top">
+<code id="con">con</code>
+</td>
+<td>
+Connection to the allofus SQL database. Defaults to <code>getOption(“aou.default.con”)</code>, which is created automatically with <code>aou_connect()</code>.
+</td>
+</tr>
+</tbody></table>
+</section>
+<section id="details" class="level3">
+<h3 class="anchored" data-anchor-id="details">Details</h3>
+<p>There are a few good reasons to use aou_join() when possible over the x_join functions from dplyr. First, it reduces the code necessary to join an existing table to another table. Second, it includes checks/workarounds for two sources of common errors using dbplyr: it automatically appends the x_as and y_as arguments to the join call if they are not provided and it changes the default suffix from .x/.y to _x/_y for cases with shared column names not specified by the <code>by</code> argument which will result in a SQL error.</p>
+</section>
+<section id="value" class="level3">
+<h3 class="anchored" data-anchor-id="value">Value</h3>
+<p>Reference to the remote table created by the join.</p>
+</section>
+<section id="examples" class="level3">
+<h3 class="anchored" data-anchor-id="examples">Examples</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"allofus"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>con <span class="ot">&lt;-</span> <span class="fu">aou_connect</span>()</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>obs_tbl <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">tbl</span>(con, <span class="st">"observation"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span>provider_id)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>obs_tbl <span class="sc">%&gt;%</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aou_join</span>(<span class="st">"person"</span>, <span class="at">type =</span> <span class="st">"left"</span>, <span class="at">by =</span> <span class="st">"person_id"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># Source:   SQL [?? x 45]
+# Database: BigQueryConnection
+   observation_id person_id observation_concept_id observation_date
+          &lt;int64&gt;   &lt;int64&gt;                &lt;int64&gt; &lt;date&gt;          
+ 1          5.e16   9511495                4052785 2024-01-21      
+ 2          5.e16   9511495               40758030 2023-11-05      
+ 3          5.e16   2507782                4271662 2020-12-20      
+ 4          1 e15   1924698                1586193 2019-03-20      
+ 5          1 e15   2385328               40770194 2020-06-10      
+ 6          1 e15   8426511               40764345 2021-09-07      
+ 7          5.e16   3276670                4311995 2017-03-08      
+ 8          5.e16   9511495                3042950 2023-09-17      
+ 9          1 e15   1571432               37020658 2022-01-11      
+10          1 e15   3068681               43530590 2019-06-17      
+# ℹ more rows
+# ℹ 41 more variables: observation_datetime &lt;dttm&gt;,
+#   observation_type_concept_id &lt;int64&gt;, value_as_number &lt;dbl&gt;,
+#   value_as_string &lt;chr&gt;, value_as_concept_id &lt;int64&gt;,
+#   qualifier_concept_id &lt;int64&gt;, unit_concept_id &lt;int64&gt;,
+#   visit_occurrence_id &lt;int64&gt;, visit_detail_id &lt;int64&gt;,
+#   observation_source_value &lt;chr&gt;, observation_source_concept_id &lt;int64&gt;, …</code></pre>
+</div>
+</div>
 
 
 </section>
@@ -987,13 +1139,13 @@ Text responses
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../man/aou_compute.html" class="pagination-link" aria-label="aou_compute">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">aou_compute</span>
+      <a href="../man/aou_health_history.html" class="pagination-link" aria-label="aou_health_history">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">aou_health_history</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../man/aou_concept_set.html" class="pagination-link" aria-label="aou_concept_set">
-        <span class="nav-page-text">aou_concept_set</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../man/aou_ls_bucket.html" class="pagination-link" aria-label="aou_ls_bucket">
+        <span class="nav-page-text">aou_ls_bucket</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

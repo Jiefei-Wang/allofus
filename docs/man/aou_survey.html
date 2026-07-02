@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>aou_concept_codes – allofus</title>
+<title>aou_survey – allofus</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,8 +65,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../man/aou_concept_set.html" rel="next">
-<link href="../man/aou_compute.html" rel="prev">
+<link href="../man/aou_table_info.html" rel="next">
+<link href="../man/aou_sql.html" rel="prev">
 <link href="../images/favicon.ico" rel="icon">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -283,7 +318,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../man/aou_atlas_cohort.html">Reference</a></li><li class="breadcrumb-item"><a href="../man/aou_concept_codes.html">aou_concept_codes</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../man/aou_atlas_cohort.html">Reference</a></li><li class="breadcrumb-item"><a href="../man/aou_survey.html">aou_survey</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -398,7 +433,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../man/aou_concept_codes.html" class="sidebar-item-text sidebar-link active">
+  <a href="../man/aou_concept_codes.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">aou_concept_codes</span></a>
   </div>
 </li>
@@ -470,7 +505,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../man/aou_survey.html" class="sidebar-item-text sidebar-link">
+  <a href="../man/aou_survey.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">aou_survey</span></a>
   </div>
 </li>
@@ -522,50 +557,214 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#concept-codes-and-survey-answers" id="toc-concept-codes-and-survey-answers" class="nav-link active" data-scroll-target="#concept-codes-and-survey-answers">Concept codes and survey answers</a>
+  <li><a href="#function-to-query-allofus-observation-table-for-survey-responses" id="toc-function-to-query-allofus-observation-table-for-survey-responses" class="nav-link active" data-scroll-target="#function-to-query-allofus-observation-table-for-survey-responses">Function to query allofus observation table for survey responses</a>
   <ul class="collapse">
   <li><a href="#description" id="toc-description" class="nav-link" data-scroll-target="#description">Description</a></li>
   <li><a href="#usage" id="toc-usage" class="nav-link" data-scroll-target="#usage">Usage</a></li>
-  <li><a href="#format" id="toc-format" class="nav-link" data-scroll-target="#format">Format</a></li>
+  <li><a href="#arguments" id="toc-arguments" class="nav-link" data-scroll-target="#arguments">Arguments</a></li>
+  <li><a href="#details" id="toc-details" class="nav-link" data-scroll-target="#details">Details</a></li>
+  <li><a href="#value" id="toc-value" class="nav-link" data-scroll-target="#value">Value</a></li>
+  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples">Examples</a></li>
   </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../man/aou_atlas_cohort.html">Reference</a></li><li class="breadcrumb-item"><a href="../man/aou_concept_codes.html">aou_concept_codes</a></li></ol></nav></header>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../man/aou_atlas_cohort.html">Reference</a></li><li class="breadcrumb-item"><a href="../man/aou_survey.html">aou_survey</a></li></ol></nav></header>
 
 
 
 
 
-<section id="concept-codes-and-survey-answers" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="concept-codes-and-survey-answers">Concept codes and survey answers</h2>
+<section id="function-to-query-allofus-observation-table-for-survey-responses" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="function-to-query-allofus-observation-table-for-survey-responses">Function to query allofus observation table for survey responses</h2>
 <section id="description" class="level3">
 <h3 class="anchored" data-anchor-id="description">Description</h3>
-<p>A data frame containing concept codes (<code>code</code>) and text responses (<code>answer</code>) for the SDOH and COPE surveys.</p>
+<p>Extracts survey responses in a tidy format that also includes ‘skip’ responses and collapses across all versions of the person health / personal medical history surveys. Currently responses in the ‘ds_survey’ table omit skipped responses. Responses are returned as Yes" if the respondent answered that the individual had the condition, No" if the respondent answered that the individual did not have that condition (or omitted it when selecting from related conditions), a skip response if the question was skipped, and NA if the respondent did not answer the question. Returns a data frame or SQL tbl with the initial cohort table along with a column for each question included in questions and answers foreach person_id in the cells. To find the desired survey questions, use the all of us data dictionary, survey codebook, Athena, data browser, or the modified codebook which can be found in the allofus R package.</p>
 </section>
 <section id="usage" class="level3">
 <h3 class="anchored" data-anchor-id="usage">Usage</h3>
-<pre><code class="language-R">aou_concept_codes
+<pre><code class="language-R">aou_survey(
+  cohort = NULL,
+  questions,
+  question_output = "concept_code",
+  clean_answers = TRUE,
+  collect = FALSE,
+  ...,
+  con = getOption("aou.default.con")
+)
 </code></pre>
 </section>
-<section id="format" class="level3">
-<h3 class="anchored" data-anchor-id="format">Format</h3>
-<p>aou_concept_codes</p>
-<dl>
-<dt>
-code
-</dt>
-<dd>
-response from the observation table
-</dd>
-<dt>
-answer
-</dt>
-<dd>
-Text responses
-</dd>
-</dl>
+<section id="arguments" class="level3">
+<h3 class="anchored" data-anchor-id="arguments">Arguments</h3>
+<table role="presentation">
+<tbody><tr>
+<td style="white-space: collapse; font-family: monospace; vertical-align: top">
+<code id="cohort">cohort</code>
+</td>
+<td>
+Reference to a remote table or local dataframe with a column called "person_id"
+</td>
+</tr>
+<tr>
+<td style="white-space: collapse; font-family: monospace; vertical-align: top">
+<code id="questions">questions</code>
+</td>
+<td>
+either a vector of concept_ids or concept_codes for questions to return results
+</td>
+</tr>
+<tr>
+<td style="white-space: collapse; font-family: monospace; vertical-align: top">
+<code id="question_output">question_output</code>
+</td>
+<td>
+how to name the columns. Options include as the text of the concept code ("concept_code"), as concept ids preceded by "x_" ("concept_id"), or using a custom vector of column names matching the vector of <code>questions</code>. Defaults to "concept_code".
+</td>
+</tr>
+<tr>
+<td style="white-space: collapse; font-family: monospace; vertical-align: top">
+<code id="clean_answers">clean_answers</code>
+</td>
+<td>
+whether to clean the answers to the survey questions. Defaults to TRUE.
+</td>
+</tr>
+<tr>
+<td style="white-space: collapse; font-family: monospace; vertical-align: top">
+<code id="collect">collect</code>
+</td>
+<td>
+Whether to bring the resulting table into local memory (<code>collect = TRUE</code>) as a dataframe or leave as a reference to a database table (for continued analysis using, e.g., <code>dbplyr</code>). Defaults to <code>FALSE.</code>
+</td>
+</tr>
+<tr>
+<td style="white-space: collapse; font-family: monospace; vertical-align: top">
+<code id="...">…</code>
+</td>
+<td>
+additional arguments passed to <code>collect()</code> when <code>collect = TRUE</code>
+</td>
+</tr>
+<tr>
+<td style="white-space: collapse; font-family: monospace; vertical-align: top">
+<code id="con">con</code>
+</td>
+<td>
+connection to the allofus SQL database. Defaults to getOption("aou.default.con"), which is created automatically with <code>aou_connect()</code>
+</td>
+</tr>
+</tbody></table>
+</section>
+<section id="details" class="level3">
+<h3 class="anchored" data-anchor-id="details">Details</h3>
+<p>The function will return a dataframe or SQL tbl with the initial cohort table along with a column for each question included in <code>questions</code> and answers for each person_id in the cells. The column names (questions) can be returned as the concept_code or concept_id or by providing new column names. For each question, a column with the suffix "_date" is included with the date on which the question was answered. When questions can have multiple answers ("checkbox"-style questions), answers are returned as a comma-separated string.</p>
+<p>To find the desired survey questions, use the all of us data dictionary, survey codebook, athena, data browser, or the allofus R package modified codebook which can be found here: https://roux-ohdsi.github.io/allofus/vignettes/searchable_codebook.html For questions regarding an individual’s health history or family health history, the function requires the specific concept_id (or concept_code) for individual in question, whether that is "self" or another relative. Responses are returned as "Yes" if the respondent answered that the individual had the condition, "No" if the respondent answered that the individual did not have that condition (or omitted it when selecting from related conditions), a skip response if the question was skipped, and NA if the respondent did not answer the question.</p>
+</section>
+<section id="value" class="level3">
+<h3 class="anchored" data-anchor-id="value">Value</h3>
+<p>A dataframe if <code>collect = TRUE</code>; a reference to a remote database table if not.</p>
+</section>
+<section id="examples" class="level3">
+<h3 class="anchored" data-anchor-id="examples">Examples</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"allofus"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>con <span class="ot">&lt;-</span> <span class="fu">aou_connect</span>()</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>cohort <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">tbl</span>(con, <span class="st">"person"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(person_id <span class="sc">&gt;</span> <span class="dv">5000000</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(person_id, year_of_birth, gender_concept_id)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">aou_survey</span>(</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  cohort,</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">questions =</span> <span class="fu">c</span>(<span class="dv">1585375</span>, <span class="dv">1586135</span>),</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">question_output =</span> <span class="st">"concept_code"</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># Source:   SQL [?? x 5]
+# Database: BigQueryConnection
+   person_id Income_AnnualIncome TheBasics_Birthplace Income_AnnualIncome_date
+     &lt;int64&gt; &lt;chr&gt;               &lt;chr&gt;                &lt;date&gt;                  
+ 1   7468592 Skip                USA                  2024-11-13              
+ 2   5577162 25k35k              USA                  2023-07-25              
+ 3   9966371 Skip                Other                2022-12-22              
+ 4   7179369 PreferNotToAnswer   USA                  2022-06-19              
+ 5   7411970 less10k             USA                  2023-08-28              
+ 6   6260126 50k75k              USA                  2024-03-25              
+ 7   7570965 PreferNotToAnswer   USA                  2023-09-02              
+ 8   7412117 50k75k              USA                  2024-01-11              
+ 9   6252144 75k100k             USA                  2023-02-08              
+10   8650154 50k75k              USA                  2023-05-28              
+# ℹ more rows
+# ℹ 1 more variable: TheBasics_Birthplace_date &lt;date&gt;</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">aou_survey</span>(</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  cohort,</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">questions =</span> <span class="fu">c</span>(<span class="dv">1585811</span>, <span class="dv">1585386</span>),</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">question_output =</span> <span class="fu">c</span>(<span class="st">"pregnancy"</span>, <span class="st">"insurance"</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># Source:   SQL [?? x 5]
+# Database: BigQueryConnection
+   person_id pregnancy         insurance         pregnancy_date insurance_date
+     &lt;int64&gt; &lt;chr&gt;             &lt;chr&gt;             &lt;date&gt;         &lt;date&gt;        
+ 1   6571348 &lt;NA&gt;              Yes               NA             2023-03-04    
+ 2   7875727 No                Yes               2023-02-08     2023-02-08    
+ 3   5072391 &lt;NA&gt;              Yes               NA             2023-03-27    
+ 4   6946539 &lt;NA&gt;              Yes               NA             2023-02-18    
+ 5   9204075 &lt;NA&gt;              PreferNotToAnswer NA             2021-11-07    
+ 6   9897520 &lt;NA&gt;              Yes               NA             2023-05-19    
+ 7   8521073 No                Yes               2023-04-24     2023-04-24    
+ 8   7183118 PreferNotToAnswer PreferNotToAnswer 2022-02-23     2022-02-23    
+ 9   8194272 &lt;NA&gt;              Yes               NA             2023-03-05    
+10   9296127 &lt;NA&gt;              Yes               NA             2024-07-03    
+# ℹ more rows</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">aou_survey</span>(</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  cohort,</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">questions =</span> <span class="fu">c</span>(<span class="dv">1585375</span>, <span class="dv">1586135</span>, <span class="dv">1740719</span>, <span class="dv">43529932</span>),</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">question_output =</span> <span class="fu">c</span>(<span class="st">"income"</span>, <span class="st">"birthplace"</span>, <span class="st">"grandpa_bowel_obstruction"</span>, <span class="st">"t2dm"</span>),</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">collect =</span> <span class="cn">FALSE</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># Source:   SQL [?? x 9]
+# Database: BigQueryConnection
+   person_id grandpa_bowel_obstruction t2dm  income            birthplace
+     &lt;int64&gt; &lt;chr&gt;                     &lt;chr&gt; &lt;chr&gt;             &lt;chr&gt;     
+ 1   6571348 &lt;NA&gt;                      &lt;NA&gt;  35k50k            USA       
+ 2   7875727 DontKnow                  No    PreferNotToAnswer Other     
+ 3   5072391 &lt;NA&gt;                      &lt;NA&gt;  PreferNotToAnswer USA       
+ 4   6946539 &lt;NA&gt;                      &lt;NA&gt;  10k25k            USA       
+ 5   9204075 &lt;NA&gt;                      &lt;NA&gt;  PreferNotToAnswer USA       
+ 6   9897520 &lt;NA&gt;                      &lt;NA&gt;  PreferNotToAnswer USA       
+ 7   8521073 No                        No    Skip              USA       
+ 8   7183118 PreferNotToAnswer         Skip  PreferNotToAnswer USA       
+ 9   8194272 &lt;NA&gt;                      &lt;NA&gt;  10k25k            USA       
+10   9296127 &lt;NA&gt;                      &lt;NA&gt;  less10k           USA       
+# ℹ more rows
+# ℹ 4 more variables: grandpa_bowel_obstruction_date &lt;date&gt;, t2dm_date &lt;date&gt;,
+#   income_date &lt;date&gt;, birthplace_date &lt;date&gt;</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">aou_survey</span>(cohort,</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">questions =</span> <span class="dv">1384452</span>,</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">question_output =</span> <span class="st">"osteoarthritis"</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">count</span>(osteoarthritis)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># Source:   SQL [?? x 2]
+# Database: BigQueryConnection
+  osteoarthritis          n
+  &lt;chr&gt;             &lt;int64&gt;
+1 &lt;NA&gt;               112366
+2 DontKnow             9110
+3 No                 103841
+4 Skip                 6026
+5 Yes                  9463
+6 PreferNotToAnswer     353</code></pre>
+</div>
+</div>
 
 
 </section>
@@ -987,13 +1186,13 @@ Text responses
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../man/aou_compute.html" class="pagination-link" aria-label="aou_compute">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">aou_compute</span>
+      <a href="../man/aou_sql.html" class="pagination-link" aria-label="aou_sql">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">aou_sql</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../man/aou_concept_set.html" class="pagination-link" aria-label="aou_concept_set">
-        <span class="nav-page-text">aou_concept_set</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../man/aou_table_info.html" class="pagination-link" aria-label="aou_table_info">
+        <span class="nav-page-text">aou_table_info</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>aou_concept_codes – allofus</title>
+<title>aou_codebook – allofus</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../man/aou_concept_set.html" rel="next">
-<link href="../man/aou_compute.html" rel="prev">
+<link href="../man/aou_collect.html" rel="next">
+<link href="../man/aou_bucket_to_workspace.html" rel="prev">
 <link href="../images/favicon.ico" rel="icon">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -283,7 +283,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../man/aou_atlas_cohort.html">Reference</a></li><li class="breadcrumb-item"><a href="../man/aou_concept_codes.html">aou_concept_codes</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../man/aou_atlas_cohort.html">Reference</a></li><li class="breadcrumb-item"><a href="../man/aou_codebook.html">aou_codebook</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -380,7 +380,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../man/aou_codebook.html" class="sidebar-item-text sidebar-link">
+  <a href="../man/aou_codebook.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">aou_codebook</span></a>
   </div>
 </li>
@@ -398,7 +398,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../man/aou_concept_codes.html" class="sidebar-item-text sidebar-link active">
+  <a href="../man/aou_concept_codes.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">aou_concept_codes</span></a>
   </div>
 </li>
@@ -522,50 +522,123 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#concept-codes-and-survey-answers" id="toc-concept-codes-and-survey-answers" class="nav-link active" data-scroll-target="#concept-codes-and-survey-answers">Concept codes and survey answers</a>
+  <li><a href="#all-of-us-modified-codebook" id="toc-all-of-us-modified-codebook" class="nav-link active" data-scroll-target="#all-of-us-modified-codebook">All of Us Modified Codebook</a>
   <ul class="collapse">
   <li><a href="#description" id="toc-description" class="nav-link" data-scroll-target="#description">Description</a></li>
   <li><a href="#usage" id="toc-usage" class="nav-link" data-scroll-target="#usage">Usage</a></li>
   <li><a href="#format" id="toc-format" class="nav-link" data-scroll-target="#format">Format</a></li>
+  <li><a href="#details" id="toc-details" class="nav-link" data-scroll-target="#details">Details</a></li>
   </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../man/aou_atlas_cohort.html">Reference</a></li><li class="breadcrumb-item"><a href="../man/aou_concept_codes.html">aou_concept_codes</a></li></ol></nav></header>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../man/aou_atlas_cohort.html">Reference</a></li><li class="breadcrumb-item"><a href="../man/aou_codebook.html">aou_codebook</a></li></ol></nav></header>
 
 
 
 
 
-<section id="concept-codes-and-survey-answers" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="concept-codes-and-survey-answers">Concept codes and survey answers</h2>
+<section id="all-of-us-modified-codebook" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="all-of-us-modified-codebook">All of Us Modified Codebook</h2>
 <section id="description" class="level3">
 <h3 class="anchored" data-anchor-id="description">Description</h3>
-<p>A data frame containing concept codes (<code>code</code>) and text responses (<code>answer</code>) for the SDOH and COPE surveys.</p>
+<p>A data frame with rows from the publicly available All of Us Survey Codebook mapped to the All of Us PPI Vocabulary available on Athena. A small number of rows did not match between the codebook and the Athena PPI Vocabulary.</p>
 </section>
 <section id="usage" class="level3">
 <h3 class="anchored" data-anchor-id="usage">Usage</h3>
-<pre><code class="language-R">aou_concept_codes
+<pre><code class="language-R">aou_codebook
 </code></pre>
 </section>
 <section id="format" class="level3">
 <h3 class="anchored" data-anchor-id="format">Format</h3>
-<p>aou_concept_codes</p>
+<p><code>aou_codebook</code> A data frame with 702 rows and 11 columns:</p>
 <dl>
 <dt>
-code
+concept_code
 </dt>
 <dd>
-response from the observation table
+chr; Concept code from AOU codebook
 </dd>
 <dt>
-answer
+concept_id
 </dt>
 <dd>
-Text responses
+int; mapped concept_id from PPI vocabulary
+</dd>
+<dt>
+concept_name
+</dt>
+<dd>
+chr; Formatted text name of concept
+</dd>
+<dt>
+concept_class_id
+</dt>
+<dd>
+chr; type of survey item - question or answer
+</dd>
+<dt>
+form_name
+</dt>
+<dd>
+int; name of survey
+</dd>
+<dt>
+field_type
+</dt>
+<dd>
+chr; type of question (radio, text, checkbox etc.)
+</dd>
+<dt>
+field_label
+</dt>
+<dd>
+chr; The actual text of the question or answer
+</dd>
+<dt>
+choices
+</dt>
+<dd>
+int; choices for question if radio or checkbox
+</dd>
+<dt>
+standard_concept
+</dt>
+<dd>
+chr; Whether concept_id is a standard omop concept
+</dd>
+<dt>
+valid_start_Date
+</dt>
+<dd>
+chr; start date for concept
+</dd>
+<dt>
+valid_end_Date
+</dt>
+<dd>
+int; end date for concept
+</dd>
+<dt>
+link
+</dt>
+<dd>
+chr; link to survey pdf
 </dd>
 </dl>
+</section>
+<section id="details" class="level3">
+<h3 class="anchored" data-anchor-id="details">Details</h3>
+<p>Questions relating to specific conditions are not included as part of this table. They are instead available in the <code>aou_health_history</code> table.</p>
+<ul>
+<li>
+<p><a href="https://docs.google.com/spreadsheets/d/1Ey8MScRYZ9QyS4izVYScISLMb62QEhSM-ErbG27dNtw/edit#gid=1832128489">All of Us codebook</a></p>
+</li>
+<li>
+<p><a href="https://github.com/roux-ohdsi/allofus/blob/main/data-raw/pkg_data.R">Code to generate table</a></p>
+</li>
+</ul>
 
 
 </section>
@@ -987,13 +1060,13 @@ Text responses
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../man/aou_compute.html" class="pagination-link" aria-label="aou_compute">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">aou_compute</span>
+      <a href="../man/aou_bucket_to_workspace.html" class="pagination-link" aria-label="aou_bucket_to_workspace">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">aou_bucket_to_workspace</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../man/aou_concept_set.html" class="pagination-link" aria-label="aou_concept_set">
-        <span class="nav-page-text">aou_concept_set</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../man/aou_collect.html" class="pagination-link" aria-label="aou_collect">
+        <span class="nav-page-text">aou_collect</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

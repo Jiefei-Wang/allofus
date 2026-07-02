@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>aou_concept_codes – allofus</title>
+<title>allofus</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,34 +20,67 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<link href="../man/aou_concept_set.html" rel="next">
-<link href="../man/aou_compute.html" rel="prev">
-<link href="../images/favicon.ico" rel="icon">
-<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-a14e345711173c227b21482e2eb4cc70.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-6d7e0e055978adcb0dc3bbe98a6d8351.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-a14e345711173c227b21482e2eb4cc70.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-c4ba24c007319be9030579b70ab027fb.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-a12ff73a71467d68b8ce8498a18a7aca.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-c4ba24c007319be9030579b70ab027fb.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./images/favicon.ico" rel="icon">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-a14e345711173c227b21482e2eb4cc70.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-6d7e0e055978adcb0dc3bbe98a6d8351.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-a14e345711173c227b21482e2eb4cc70.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-c4ba24c007319be9030579b70ab027fb.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-a12ff73a71467d68b8ce8498a18a7aca.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-c4ba24c007319be9030579b70ab027fb.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -248,11 +281,11 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../images/apple-touch-icon.png" alt="Northeastern University logo" class="navbar-logo light-content">
-    <img src="../images/apple-touch-icon.png" alt="Northeastern University logo" class="navbar-logo dark-content">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    <img src="./images/apple-touch-icon.png" alt="Northeastern University logo" class="navbar-logo light-content">
+    <img src="./images/apple-touch-icon.png" alt="Northeastern University logo" class="navbar-logo dark-content">
     </a>
-    <a class="navbar-brand" href="../index.html">
+    <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">allofus</span>
     </a>
   </div>
@@ -263,7 +296,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../index.qmd"> 
+    <a class="nav-link" href="./index.qmd"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item compact">
@@ -283,7 +316,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../man/aou_atlas_cohort.html">Reference</a></li><li class="breadcrumb-item"><a href="../man/aou_concept_codes.html">aou_concept_codes</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -294,14 +327,14 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
-      <a href="../index.html" class="sidebar-logo-link">
+      <a href="./index.html" class="sidebar-logo-link">
       </a>
       </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../vignettes/allofus.html" class="sidebar-item-text sidebar-link">
+  <a href="./vignettes/allofus.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Getting Started</span></a>
   </div>
 </li>
@@ -316,19 +349,19 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../vignettes/atlas.html" class="sidebar-item-text sidebar-link">
+  <a href="./vignettes/atlas.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Using ATLAS to create a cohort</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../vignettes/data.html" class="sidebar-item-text sidebar-link">
+  <a href="./vignettes/data.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Extracting All of Us survey and EHR data</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../vignettes/workspace.html" class="sidebar-item-text sidebar-link">
+  <a href="./vignettes/workspace.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Managing files on the workbench</span></a>
   </div>
 </li>
@@ -345,13 +378,13 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../vignettes/web_only/health_codebook.html" class="sidebar-item-text sidebar-link">
+  <a href="./vignettes/web_only/health_codebook.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Health History Surveys</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../vignettes/web_only/searchable_codebook.html" class="sidebar-item-text sidebar-link">
+  <a href="./vignettes/web_only/searchable_codebook.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">All of Us Surveys</span></a>
   </div>
 </li>
@@ -359,136 +392,136 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
  <span class="menu-text">Reference</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../man/aou_atlas_cohort.html" class="sidebar-item-text sidebar-link">
+  <a href="./man/aou_atlas_cohort.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">aou_atlas_cohort</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../man/aou_bucket_to_workspace.html" class="sidebar-item-text sidebar-link">
+  <a href="./man/aou_bucket_to_workspace.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">aou_bucket_to_workspace</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../man/aou_codebook.html" class="sidebar-item-text sidebar-link">
+  <a href="./man/aou_codebook.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">aou_codebook</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../man/aou_collect.html" class="sidebar-item-text sidebar-link">
+  <a href="./man/aou_collect.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">aou_collect</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../man/aou_compute.html" class="sidebar-item-text sidebar-link">
+  <a href="./man/aou_compute.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">aou_compute</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../man/aou_concept_codes.html" class="sidebar-item-text sidebar-link active">
+  <a href="./man/aou_concept_codes.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">aou_concept_codes</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../man/aou_concept_set.html" class="sidebar-item-text sidebar-link">
+  <a href="./man/aou_concept_set.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">aou_concept_set</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../man/aou_connect.html" class="sidebar-item-text sidebar-link">
+  <a href="./man/aou_connect.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">aou_connect</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../man/aou_create_bucket.html" class="sidebar-item-text sidebar-link">
+  <a href="./man/aou_create_bucket.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">aou_create_bucket</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../man/aou_create_temp_table.html" class="sidebar-item-text sidebar-link">
+  <a href="./man/aou_create_temp_table.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">aou_create_temp_table</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../man/aou_health_history.html" class="sidebar-item-text sidebar-link">
+  <a href="./man/aou_health_history.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">aou_health_history</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../man/aou_join.html" class="sidebar-item-text sidebar-link">
+  <a href="./man/aou_join.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">aou_join</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../man/aou_ls_bucket.html" class="sidebar-item-text sidebar-link">
+  <a href="./man/aou_ls_bucket.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">aou_ls_bucket</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../man/aou_ls_workspace.html" class="sidebar-item-text sidebar-link">
+  <a href="./man/aou_ls_workspace.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">aou_ls_workspace</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../man/aou_observation_period.html" class="sidebar-item-text sidebar-link">
+  <a href="./man/aou_observation_period.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">aou_observation_period</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../man/aou_session_info.html" class="sidebar-item-text sidebar-link">
+  <a href="./man/aou_session_info.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">aou_session_info</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../man/aou_sql.html" class="sidebar-item-text sidebar-link">
+  <a href="./man/aou_sql.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">aou_sql</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../man/aou_survey.html" class="sidebar-item-text sidebar-link">
+  <a href="./man/aou_survey.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">aou_survey</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../man/aou_table_info.html" class="sidebar-item-text sidebar-link">
+  <a href="./man/aou_table_info.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">aou_table_info</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../man/aou_tables.html" class="sidebar-item-text sidebar-link">
+  <a href="./man/aou_tables.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">aou_tables</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../man/aou_workspace_to_bucket.html" class="sidebar-item-text sidebar-link">
+  <a href="./man/aou_workspace_to_bucket.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">aou_workspace_to_bucket</span></a>
   </div>
 </li>
@@ -496,19 +529,19 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../NEWS.html" class="sidebar-item-text sidebar-link">
+  <a href="./NEWS.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">News</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../LICENSE.html" class="sidebar-item-text sidebar-link">
+  <a href="./LICENSE.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">License</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../CITATION.html" class="sidebar-item-text sidebar-link">
+  <a href="./CITATION.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Citation</span></a>
   </div>
 </li>
@@ -522,50 +555,74 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#concept-codes-and-survey-answers" id="toc-concept-codes-and-survey-answers" class="nav-link active" data-scroll-target="#concept-codes-and-survey-answers">Concept codes and survey answers</a>
+  <li><a href="#allofus-r-package" id="toc-allofus-r-package" class="nav-link active" data-scroll-target="#allofus-r-package"><code>allofus</code> R Package</a>
   <ul class="collapse">
-  <li><a href="#description" id="toc-description" class="nav-link" data-scroll-target="#description">Description</a></li>
-  <li><a href="#usage" id="toc-usage" class="nav-link" data-scroll-target="#usage">Usage</a></li>
-  <li><a href="#format" id="toc-format" class="nav-link" data-scroll-target="#format">Format</a></li>
+  <li><a href="#installation" id="toc-installation" class="nav-link" data-scroll-target="#installation">Installation</a></li>
+  <li><a href="#use" id="toc-use" class="nav-link" data-scroll-target="#use">Use</a></li>
+  <li><a href="#a-note-on-workbench-2.0" id="toc-a-note-on-workbench-2.0" class="nav-link" data-scroll-target="#a-note-on-workbench-2.0">A note on “Workbench 2.0”</a></li>
+  <li><a href="#citation" id="toc-citation" class="nav-link" data-scroll-target="#citation">Citation</a></li>
+  <li><a href="#bugs" id="toc-bugs" class="nav-link" data-scroll-target="#bugs">Bugs</a></li>
   </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../man/aou_atlas_cohort.html">Reference</a></li><li class="breadcrumb-item"><a href="../man/aou_concept_codes.html">aou_concept_codes</a></li></ol></nav></header>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
 
 
 
 
 
-<section id="concept-codes-and-survey-answers" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="concept-codes-and-survey-answers">Concept codes and survey answers</h2>
-<section id="description" class="level3">
-<h3 class="anchored" data-anchor-id="description">Description</h3>
-<p>A data frame containing concept codes (<code>code</code>) and text responses (<code>answer</code>) for the SDOH and COPE surveys.</p>
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+<section id="allofus-r-package" class="level1">
+<h1><code>allofus</code> R Package</h1>
+<!-- badges: start -->
+<p><a href="https://github.com/roux-ohdsi/allofus/actions/workflows/R-CMD-check.yaml"><img src="https://github.com/roux-ohdsi/allofus/actions/workflows/R-CMD-check.yaml/badge.svg" class="img-fluid" alt="R-CMD-check"></a> <a href="https://CRAN.R-project.org/package=allofus"><img src="https://www.r-pkg.org/badges/version/allofus.png" class="img-fluid" alt="CRAN status"></a> <a href="https://cran.r-project.org/package=allofus"><img src="http://cranlogs.r-pkg.org/badges/grand-total/allofus.png" class="img-fluid"></a> <a href="https://www.doi.org/10.1093/jamia/ocae198"><img src="https://img.shields.io/badge/DOI-10.1093%2Fjamia%2Focae198-007ec6" class="img-fluid"></a> <!-- badges: end --></p>
+<p>The goal of the <code>allofus</code> R package is to streamline the use of R within the <a href="https://www.researchallofus.org/data-tools/workbench/">All of Us Researcher Workbench</a>. It has 4 primary goals:</p>
+<ol type="1">
+<li>Facilitate the use of popular <code>tidyverse</code> ecosystem of R packages on the Researcher Workbench</li>
+<li>Help researchers more efficiently and accurately extract and synthesize survey data and EHR data</li>
+<li>Increase the interoperability between tools created by the Observational Health Data Sciences and Informatics community (OHDSI) for the <a href="https://www.researchallofus.org/faq/what-is-omop/">OMOP CDM</a>) and the Researcher Workbench</li>
+<li>Make connecting to the database and managing files simple</li>
+</ol>
+<p><em>The <code>allofus</code> R package was developed by Louisa Smith and Rob Cavanaugh at <a href="https://ohdsi.northeastern.edu">Northeastern University</a> and is not affiliated with or endorsed by the All of Us Research Program.</em></p>
+<section id="installation" class="level3">
+<h3 class="anchored" data-anchor-id="installation">Installation</h3>
+<p>Install the released version of <code>allofus</code> from CRAN:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"allofus"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Install the development version from Github:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"pak"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>pak<span class="sc">::</span><span class="fu">pak</span>(<span class="st">"roux-ohdsi/allofus"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="usage" class="level3">
-<h3 class="anchored" data-anchor-id="usage">Usage</h3>
-<pre><code class="language-R">aou_concept_codes
-</code></pre>
+<section id="use" class="level3">
+<h3 class="anchored" data-anchor-id="use">Use</h3>
+<p>Read through the <a href="https://roux-ohdsi.github.io/allofus/vignettes/allofus.html">getting started</a> vignette to learn how to use the package.</p>
+<p>A community workspace on the <em>All of Us</em> Researcher Workbench will soon be available.</p>
 </section>
-<section id="format" class="level3">
-<h3 class="anchored" data-anchor-id="format">Format</h3>
-<p>aou_concept_codes</p>
-<dl>
-<dt>
-code
-</dt>
-<dd>
-response from the observation table
-</dd>
-<dt>
-answer
-</dt>
-<dd>
-Text responses
-</dd>
-</dl>
+<section id="a-note-on-workbench-2.0" class="level3">
+<h3 class="anchored" data-anchor-id="a-note-on-workbench-2.0">A note on “Workbench 2.0”</h3>
+<p>The All of Us Researcher Workbench has migrated to a new, Verily-based platform (“Workbench 2.0”). A few things work differently there compared to the original workbench:</p>
+<ul>
+<li><strong>Buckets aren’t created automatically.</strong> Workbench 2.0 workspaces no longer come with a <code>WORKSPACE_BUCKET</code> set up for you. Run <code>aou_create_bucket()</code> once per workspace to create one (or <code>aou_create_bucket(temporary = TRUE)</code> for a bucket that auto-deletes its contents after a couple of weeks) before using <code>aou_ls_bucket()</code> and related functions.</li>
+<li><strong>Environment variables are resolved behind the scenes.</strong> <code>WORKSPACE_CDR</code> and <code>GOOGLE_PROJECT</code> are no longer injected as OS environment variables on workbench 2.0. <code>allofus</code> resolves them automatically via the <code>wb</code> CLI when the package loads, and caches the result to <code>~/.aou-env</code> so subsequent sessions don’t need to re-resolve them.</li>
+<li><strong><code>aou_create_temp_table()</code> currently doesn’t support joins.</strong> The temporary table it creates can be queried directly (e.g., with <code>dplyr::collect()</code>), but it currently can’t be used in a join with another table in a later query. This seems to be a limitation in how the workbench is set up; it is unclear if it can be fixed.</li>
+</ul>
+</section>
+<section id="citation" class="level3">
+<h3 class="anchored" data-anchor-id="citation">Citation</h3>
+Please cite the <code>allofus</code> package as:
+<p>
+Smith LH, Cavanaugh R (2024). “allofus: An R Package to Facilitate Use of the All of Us Researcher Workbench.” <em>Journal of the American Medical Informatics Association</em>, ocae198. <a href="https://doi.org/10.1093/jamia/ocae198">doi:10.1093/jamia/ocae198</a>.
+</p>
+<p>or with</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">citation</span>(<span class="st">"allofus"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><em>Note: A pre-print of the special issue can be found here: <a href="https://doi.org/10.1101/2024.04.10.24305611" class="uri">https://doi.org/10.1101/2024.04.10.24305611</a></em></p>
+<p>We also encourage you to reference the specific version of the package you use for an analysis. You can look this up with</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">packageVersion</span>(<span class="st">"allofus"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="bugs" class="level3">
+<h3 class="anchored" data-anchor-id="bugs">Bugs</h3>
+<p>Please leave us comments, requests, and report bugs using the “Issues” tab on github.</p>
 
 
 </section>
@@ -985,18 +1042,6 @@ Text responses
     }
   });
   </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a href="../man/aou_compute.html" class="pagination-link" aria-label="aou_compute">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">aou_compute</span>
-      </a>          
-  </div>
-  <div class="nav-page nav-page-next">
-      <a href="../man/aou_concept_set.html" class="pagination-link" aria-label="aou_concept_set">
-        <span class="nav-page-text">aou_concept_set</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
-  </div>
-</nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
