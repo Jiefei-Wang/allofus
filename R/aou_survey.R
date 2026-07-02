@@ -431,20 +431,22 @@ aou_survey <- function(cohort = NULL,
           TRUE ~ REGEXP_EXTRACT(.data$value_source_value, ".+_(.+_*.*)")
         )
       )
-      # need to only do this if there are values in questions that correspond to these
-      tmptbl = aou_create_temp_table(
-        allofus::aou_concept_codes %>%
-          dplyr::filter(
-            stringr::str_detect(.data$code, "SDOH|COPE")) %>%
-          dplyr::rename(
-                value_source_value = "code",
-                 better_answer = "answer"
-                )
+      # aou_concept_codes is small and bundled locally, so rather than pushing
+      # it into a temp table and joining (which aou_create_temp_table()
+      # doesn't currently support), translate the code -> answer lookup
+      # directly into a SQL CASE WHEN expression
+      sdoh_cope_codes <- allofus::aou_concept_codes %>%
+        dplyr::filter(stringr::str_detect(.data$code, "SDOH|COPE"))
+
+      recode_branches <- purrr::map2(
+        sdoh_cope_codes$code, sdoh_cope_codes$answer,
+        ~ rlang::expr(.data$value_source_value == !!.x ~ !!.y)
       )
 
-      tmp <- dplyr::left_join(tmp, tmptbl, by = "value_source_value") %>%
-        dplyr::mutate(value_source_value = ifelse(is.na(.data$better_answer), .data$value_source_value, .data$better_answer)) %>%
-        dplyr::select(-"better_answer")
+      tmp <- dplyr::mutate(
+        tmp,
+        value_source_value = !!rlang::expr(dplyr::case_when(!!!recode_branches, TRUE ~ .data$value_source_value))
+      )
     }
 
     # go wide

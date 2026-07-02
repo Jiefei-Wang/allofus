@@ -66,13 +66,13 @@ Retrieves occurrences of a concept set from the All of Us
 database for a given cohort.
 }
 \examples{
-\dontshow{if (on_workbench()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (on_workbench()) withAutoprint(\{ # examplesIf}
 # indicator for any aspirin at any time
 
 con <- aou_connect()
 
 aspirin_users <- aou_concept_set(dplyr::tbl(con, "person"),
-  concepts = 1191, concept_set_name = "aspirin", domains = "drug"
+  concepts = 1112807, concept_set_name = "aspirin", domains = "drug"
 )
 
 # starting with person table to create a cohort

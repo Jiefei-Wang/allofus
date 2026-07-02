@@ -15,3 +15,6 @@ altdoc/freeze.rds
 _quarto/
 !_quarto/_freeze/
 ^_quarto$
+
+/.quarto/
+**/*.quarto_ipynb

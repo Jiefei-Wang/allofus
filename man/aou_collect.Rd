@@ -34,7 +34,7 @@ integer values are converted to doubles. If this is not what you want, set
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
 }
 \examples{
-\dontshow{if (on_workbench()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (on_workbench()) withAutoprint(\{ # examplesIf}
 # connect to database
 con <- aou_connect()
 

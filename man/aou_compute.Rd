@@ -31,7 +31,7 @@ be created again a new session.
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
 }
 \examples{
-\dontshow{if (on_workbench()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (on_workbench()) withAutoprint(\{ # examplesIf}
 
 con <- aou_connect()
 tmp_tbl <- dplyr::tbl(con, "concept") \%>\%

@@ -24,7 +24,7 @@ Prints a list of all of the tables in the All of Us Big Query
 Database.
 }
 \examples{
-\dontshow{if (on_workbench()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (on_workbench()) withAutoprint(\{ # examplesIf}
 con <- aou_connect()
 aou_tables()
 \dontshow{\}) # examplesIf}

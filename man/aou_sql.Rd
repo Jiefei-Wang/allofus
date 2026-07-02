@@ -44,7 +44,7 @@ A dataframe if \code{collect = TRUE}; a reference to a remote database table if 
 Executes an SQL query on the All of Us database
 }
 \examples{
-\dontshow{if (on_workbench()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (on_workbench()) withAutoprint(\{ # examplesIf}
 
 con <- aou_connect()
 
